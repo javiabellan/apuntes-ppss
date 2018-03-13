@@ -1,17 +1,17 @@
 # Dependencias externas
 
 #### Conceptos:
-* Entradas directas: Parámetros del SUT (proporcionadas en el test)
-* Entradas indirectas: Componentes que invoca el SUT (valores de retorno, actualización de parámetros o excepciones)
+* Entradas directas: Parámetros del SUT (proporcionadas en el test)
+* Entradas indirectas: Componentes que invoca el SUT (valores de retorno, actualización de parámetros o excepciones)
 * Seam: Un sitio en el código, donde se puede alterar el comportamineto, sin modificar el código.
 
 #### Pasos:
 1. Identificar las dependencias externas del SUT.
 2. Refactorizar si no es testable. (puede ser probado de forma aislada) (Refactorizar no se considera modificar código)
-3. Implementación ficticia (doble)
+3. Implementación ficticia (doble)
 4. Implementar drivers:
-  * Verificación basada en el estado: Pruebas de unidades. Solo interesa el resultado del SUT. Stub.
-  * Verificación basada en el comportamiento: Pruebas de intergración. Mock
+  * Verificación basada en el estado: Pruebas de unidades. Solo interesa el resultado del SUT. Stub.
+  * Verificación basada en el comportamiento: Pruebas de intergración. Mock
 
 
 ## 1. Identificar dependencias externas.
@@ -27,6 +27,14 @@ puclic class ClassSUT
 }
 ```
 
+Hay una dependendia externa al llamar a metodo() que está definida en otro sitio
+```java
+puclic class Objeto
+{
+	public void metodo(){...}
+}
+```
+
 ## 2. Refactorizar
 
 Formas libro:
@@ -37,14 +45,47 @@ Formas libro:
 * Inject stub implementation into a class under test.
 
 Formas diapositivas:
-* Interfaz: un parámetro en el método
-* Interfaz: una clase factoría
-* Interfaz: un método de factoría local
+* Interfaz: un parámetro en el método
+* Interfaz: una clase factoría
+* Interfaz: un método de factoría local
 * Interfaz: variaciones de las anteriores
 * Herencia
 
-### Método de factoría local
+---
 
+### Interfaz
+
+Paso 2: Refactorizar (en src/main)
+
+La dependencia externa de la sut, ahora se declara con la interfaz:
+```java
+puclic class ClassSUT
+{
+	public sut()
+	{
+		InterfazObjeto objeto = new Objeto();
+		objeto.metodo(); // Dependencia externa. SUT no testable
+	}
+}
+```
+
+Poner una capa de abastracción (interfaz) al objeto
+```java
+public interface InterfazObjeto
+{
+	void metodo();
+}
+
+// El objeto ahora implemneta la inerfaz
+class Objeto: InterfazObjeto
+{
+	public void metodo(){...}
+}
+```
+
+---
+
+### Método de factoría local
 
 Paso 2: Refactorizar (en src/main)
 ```java
