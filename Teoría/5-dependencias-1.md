@@ -18,7 +18,7 @@
 ## 1. Identificar dependencias externas.
 
 ```java
-puclic class ClassSUT
+public class ClassSUT
 {
 	public sut()
 	{
@@ -30,7 +30,7 @@ puclic class ClassSUT
 
 Hay una dependendia externa al llamar a metodo() que está definida en otro sitio
 ```java
-puclic class Objeto
+public class Objeto
 {
 	public void metodo(){...}
 }
@@ -82,7 +82,7 @@ public class ObjetoStub implements InterfazObjeto
 
 La dependencia externa de la sut, ahora se declara con la interfaz:
 ```java
-puclic class ClassSUT
+public class ClassSUT
 {
 	public sut()
 	{
@@ -109,7 +109,7 @@ Hasta aquí, tenemos la implementación ficicia del stub, pero nuestro código s
 En la clase del SUT, poner un nuevo constructor con un parámetro (o un parámetro en el existente) **que acepte un objeto que implente la interfaz**
 
 ```java
-puclic class ClassSUT
+public class ClassSUT
 {
 	private InterfazObjeto objeto;
 	
@@ -149,7 +149,7 @@ public class Tests
 ## A través de un método setter/getter
 Añadir un get-set por cada dependencia externa
 ```java
-puclic class ClassSUT
+public class ClassSUT
 {
 	private InterfazObjeto objeto;
 	
@@ -247,7 +247,7 @@ pucbic class ClassSUT
 
 Paso 2: Refactorizar (en src/main)
 ```java
-puclic class ClassSUT
+public class ClassSUT
 {
 	public Objeto getObjeto()
 	{
