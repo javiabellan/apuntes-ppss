@@ -245,6 +245,14 @@ pucbic class ClassSUT
 	}
 }
 ```
+
+Y en los tests
+```java
+ObjetoStub myFakeObj = new ObjetoStub(); // Stub
+myFakeObj.setOpcion(x);
+FactoriaObjeto.setObjeto(myFakeObj); // Al ser un metodo static, simplenete lo llamas para cambiar el comportamineto
+```
+
 ## Método de factoría local
 
 Paso 2: Refactorizar (en src/main)
