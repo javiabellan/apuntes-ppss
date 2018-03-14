@@ -52,23 +52,25 @@ Existen distintas formas:
 
 ## Interfaz
 
-Poner una capa de abastracción (interfaz) al objeto de la dependencia externa
+Poner una capa de abastracción (interfaz).
 ```java
 public interface InterfazObjeto
 {
 	public void metodo();
 }
+```
 
-public class Objeto implements InterfazObjeto // El objeto ahora implementa la interfaz
+El objeto (dependencia externa) ahora implementa la interfaz
+```java
+public class Objeto implements InterfazObjeto
 {
 	@Override
 	public void metodo(){...}
 }
 ```
 
-Paso 3: Implementación del doble (stub) (en `src/test`)
+El doble del objeto (stub) también implementa la interfaz
 ```java
-// El stub también implementa la interfaz
 public class ObjetoStub implements InterfazObjeto
 {
 	private int resultado;
@@ -87,12 +89,12 @@ public class ClassSUT
 	public sut()
 	{
 		InterfazObjeto objeto = new Objeto();
-		objeto.metodo(); // Dependencia externa. SUT no testable
+		objeto.metodo();
 	}
 }
 ```
 
-Hasta aquí, tenemos la implementación ficicia del stub, pero nuestro código sigue llamando al método original. Tenemos que cambiar eso, tenemos que introducir el seam. Hay muchas formas de hacerlo:
+Hasta aquí, tenemos la implementación ficticia del stub, pero nuestro código sigue llamando al método original. Tenemos que cambiar eso, tenemos que introducir el seam. Hay muchas formas de hacerlo:
 
 * Recibir la interfaz a nivel de constructor de la clase del SUT.
 * Recibir la interfaz a través de un método setter/getter de la clase del SUT.
