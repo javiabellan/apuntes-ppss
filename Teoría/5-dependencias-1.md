@@ -1,6 +1,7 @@
 # Dependencias externas
 
 #### Conceptos:
+* SUT: Unidad a probar
 * Entradas directas: Parámetros del SUT (proporcionadas en el test)
 * Entradas indirectas: Componentes que invoca el SUT (valores de retorno, actualización de parámetros o excepciones)
 * Seam: Un sitio en el código, donde se puede alterar el comportamineto, sin modificar el código.
@@ -10,8 +11,8 @@
 2. Refactorizar si no es testable. (puede ser probado de forma aislada) (Refactorizar no se considera modificar código)
 3. Implementación ficticia (doble)
 4. Implementar drivers:
-  * Verificación basada en el estado: Pruebas de unidades. Solo interesa el resultado del SUT. Stub.
-  * Verificación basada en el comportamiento: Pruebas de intergración. Mock
+   * Verificación basada en el estado: Pruebas de unidades. Solo interesa el resultado del SUT. Stub.
+   * Verificación basada en el comportamiento: Pruebas de intergración. Mock
 
 
 ## 1. Identificar dependencias externas.
@@ -55,12 +56,27 @@ Poner una capa de abastracción (interfaz) al objeto de la dependencia externa
 ```java
 public interface InterfazObjeto
 {
-	void metodo();
+	public void metodo();
 }
 
-public class Objeto: InterfazObjeto // El objeto ahora implementa la interfaz
+public class Objeto implements InterfazObjeto // El objeto ahora implementa la interfaz
 {
+	@Override
 	public void metodo(){...}
+}
+```
+
+Paso 3: Implementación del doble (stub) (en `src/test`)
+```java
+// El stub también implementa la interfaz
+public class ObjetoStub implements InterfazObjeto
+{
+	private int resultado;
+	
+	public ObjetoStub(int r) { this.resultado = r; }
+	
+	@Override
+	public void metodo(){//codigo controlado}
 }
 ```
 
@@ -73,15 +89,6 @@ puclic class ClassSUT
 		InterfazObjeto objeto = new Objeto();
 		objeto.metodo(); // Dependencia externa. SUT no testable
 	}
-}
-```
-
-Implementación del stub (paso 3)
-```java
-// El stub también implementa la interfaz
-public class ObjetoStub: InterfazObjeto
-{
-	public void metodo(){//codigo controlado}
 }
 ```
 
@@ -99,21 +106,22 @@ Hasta aquí, tenemos la implementación ficicia del stub, pero nuestro código s
 
 ## A nivel de constructor
 
-En la clase del SUT, poner un nuevo constructor con un parámetro (o un parámetro en el existente) **que acepte un obejeto que implente la interfaz**
+En la clase del SUT, poner un nuevo constructor con un parámetro (o un parámetro en el existente) **que acepte un objeto que implente la interfaz**
 
 ```java
 puclic class ClassSUT
 {
 	private InterfazObjeto objeto;
 	
-	ClassSUT()
+	ClassSUT() // Código para producción
 	{
-		objeto = new Objeto(); // Código para producción
+		objeto = new Objeto();
 	}
 	
-	ClassSUT(InterfazObjeto obj)
+	ClassSUT(InterfazObjeto obj) // Código para test
 	{
-		objeto = obj; // Código para test
+		objeto = obj;
+		// Si hay mas dep. ext., seguir rellenando el constructor.
 	}
 	public sut()
 	{
@@ -132,18 +140,109 @@ public class Tests
 		ObjetoStub myFakeObj = new ObjetoStub();        // Stub
 		ClassSUT   classSUT  = new ClassSUT(myFakeObj); // Pasar stub al constructor
 		
-		bool resultado = classSUT.sut();      // SUT (que llamará al método del del stub)
+		bool resultado = classSUT.sut(); // SUT (que llamará al método del del stub)
 		assert(resultado, resultadoEsperado);
 	}
 }
 ```
 
 ## A través de un método setter/getter
+Añadir un get-set por cada dependencia externa
+```java
+puclic class ClassSUT
+{
+	private InterfazObjeto objeto;
+	
+	ClassSUT() // Código para producción
+	{
+		objeto = new Objeto();
+	}
+	
+	public InterfazObjeto GetterSetterObj // Código para test
+	{
+		get { return objeto; }
+		set { objeto = value; }
+	}
+	public sut()
+	{
+		objeto.metodo();
+	}
+}
+```
+
+Test:
+```java
+public class Tests
+{
+	@test
+	public void test()
+	{
+		ObjetoStub myFakeObj = new ObjetoStub(); // Stub
+		ClassSUT   classSUT  = new ClassSUT();
+		classSUT.GetterSetterObj = myFakeObj; // Pasar stub por setter
+		
+		bool resultado = classSUT.sut(); // SUT (que llamará al método del del stub)
+		assert(resultado, resultadoEsperado);
+	}
+}
+```
 
 ## Un parámetro en el método
 
-The parameter injection method is trivial: you send in an instance of a (fake) dependency to the method in question by adding a parameter to the method signature.
+Es simplemente poner un parametro en el SUT y pasar por ahí el objeto dependencia.
 
+## Clase factoría
+Se inicializa la dependencia en el construtor, pero a través de una clase factoría responsable de crear objetos.
+
+```java
+public class FactoriaObjeto
+{
+	private static InterfazObjeto objeto = null;
+	
+	public static InterfazObjeto create()
+	{
+		if (objeto != null)
+			return objeto; // Código test
+		else
+			return new Objeto(); // Código producción
+	}
+	
+	static void setObjeto(InterfazObjeto obj) // Llamar en código test
+	{
+		objeto = obj;
+	}
+}
+```
+
+Y entonces el construtor de la clase SUT llama a factoria create
+```java
+public class ClassSUT
+{
+	private InterfazObjeto objeto;
+	
+	ClassSUT() // Código para producción y test
+	{
+		objeto = FactoriaObjeto.create()
+	}
+	
+	public sut()
+	{
+		objeto.metodo();
+	}
+}
+```
+
+Otra forma de llamar a la clase factoría si solo necesitas la dependencia externa en un metodo
+```java
+pucbic class ClassSUT
+{
+	public sut()
+	{
+		InterfazObjeto objeto = FactoriaObjeto.create()
+		objeto.metodo();
+	}
+}
+```
 ## Método de factoría local
 
 Paso 2: Refactorizar (en src/main)
