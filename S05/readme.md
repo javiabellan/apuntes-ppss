@@ -37,7 +37,7 @@ public class Objeto
 
 ## 2. Refactorizar (src/main)
 
-Creo que si se declara dentro (del método SUT) la dependendia externa (`new`), es cuando hay que refactorizar.
+Creo que si se declara la dependendia externa (`new`) dentro del SUT, es cuando hay que refactorizar.
 
 Existen 2 formas principales:
 
