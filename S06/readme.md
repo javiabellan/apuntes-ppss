@@ -1,10 +1,13 @@
 # Dependencias 2
 
-| Stub                                    | Mock                                     |
-|-----------------------------------------|------------------------------------------|
-| Proporcionar entradas indirectas al sut | Observar las salidas indirectas del sur  |
-| Verificación basada en el estado        | Verificación basada en el comportamiento |
-| NiceMock                                | Mock o StrictMock                        |
+Diferencias entre Stub y Mock:
+
+| Stub                                          | Mock                                                     |
+|-----------------------------------------------|----------------------------------------------------------|
+| Si sólo quiero controlar lo que devuelve      | Si además quiro controlar los parámetros, y las llamadas |
+| Proporcionar sólo entradas indirectas al sut  | Observar también las salidas indirectas del sut          |
+| Verificación basada en el **estado**          | Verificación basada en el **comportamiento**             |
+| Con Easymock: NiceMock (no poner `verify()`)  | Easymock: Mock o StrictMock (poner `verify()`)           |
 
 ## Easymock
 
