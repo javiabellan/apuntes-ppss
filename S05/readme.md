@@ -17,6 +17,9 @@
 
 ## 1. Identificar dependencias externas.
 
+
+## 1. Identificar dependencias externas.
+
 ```java
 public class ClassSUT
 {
@@ -38,16 +41,11 @@ public class Objeto
 
 ## 2. Refactorizar (src/main)
 
-Existen distintas formas:
+Creo que es cuando en una SUT se declara declara la dep. ext. (`new`) y se usa. Si se declara fuera, creo que no hay que refactorizar.
+
+Existen 2 formas principales:
 
 * Interfaz
-  * Recibir la interfaz a nivel de constructor de la clase del SUT.
-  * Recibir la interfaz a través de un método setter/getter de la clase del SUT.
-  * Recibir la interfaz justo antes de su invocación desde el propio SUT usando:
-    * un parámetro en el método
-    * una clase factoría
-    * un método de factoría local
-    * variaciones de las anteriores
 * Herencia
 
 ## Interfaz
@@ -72,7 +70,8 @@ public class ClassSUT
 }
 ```
 
-El objeto (dependencia externa) ahora implementa la interfaz
+El objeto (dependencia externa) ahora implementa la interfaz. Poner `implements` y `@Override`.
+
 ```java
 public class Objeto implements InterfazObjeto
 {
@@ -95,15 +94,14 @@ public class Objeto implements InterfazObjeto
 > }
 > ```
 
-Hasta aquí, tenemos la implementación ficticia del stub, pero nuestro código sigue llamando al método original. Tenemos que cambiar eso, tenemos que introducir el seam. Hay muchas formas de hacerlo:
+Hasta aquí, tenemos la implementación ficticia del stub, pero nuestro código sigue llamando al método original. Tenemos que cambiar eso, tenemos que introducir el seam. Hay muchas formas de refactorizar con **interzaz**:
 
-* Recibir la interfaz a nivel de constructor de la clase del SUT.
-* Recibir la interfaz a través de un método setter/getter de la clase del SUT.
-* Recibir la interfaz justo antes de su invocación desde el propio SUT usando:
-  * un parámetro en el método
-  * una clase factoría
-  * un método de factoría local
-  * variaciones de las anteriores
+* A nivel de **constructor** de la clase del SUT.
+* A través de un método **setter/getter** de la clase del SUT.
+* Con una **clase factoría**
+* Con un **método de factoría local**
+* Con un parámetro en el método (no se ha visto)
+* Variaciones de las anteriores (no se ha visto)
 
 ---
 
