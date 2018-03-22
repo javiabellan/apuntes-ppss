@@ -7,7 +7,13 @@ Diferencias entre Stub y Mock:
 | Si sólo quiero controlar lo que devuelve      | Si además quiro controlar los parámetros, y las llamadas |
 | Proporcionar sólo entradas indirectas al sut  | Observar también las salidas indirectas del sut          |
 | Verificación basada en el **estado**          | Verificación basada en el **comportamiento**             |
-| Con Easymock: NiceMock (no poner `verify()`)  | Easymock: Mock o StrictMock (poner `verify()`)           |
+
+Diferencias en Easymock:
+
+|                    | Stub          | Mock                   |
+|--------------------|---------------|------------------------|
+| nombre             | NiceMock      | Mock o StrictMock      |
+| registrar llamadas | No poner nada | poner `verify()`       |
 
 ## Easymock
 
