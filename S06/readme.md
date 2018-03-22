@@ -10,14 +10,14 @@ Diferencias entre Stub y Mock:
 
 Pasos con Easymock:
 
-|                    | Stub                                    | Mock                   |
-|--------------------|-----------------------------------------|------------------------|
-| 1. Crear           | `S s = EasyMock.createNiceMock(S.class);`  |`Mock` ó `StrictMock`      |
-| 2. Esperar valor   | `EasyMock.expect(s.m()).andStubReturn(x);` | EasyMock.expect().andReturn()  |
-| 2. Esperar execep  | `EasyMock.expect().andStubThrow()`       | EasyMock.expect().andThrow()   |
-| 2. Esperar void    | `EasyMock.asStub()`                      |  |
-| 3. Listo           | `EasyMock.replay(s)`                      | `EasyMock.replay(m)`  |
-| 4. registrar llamadas |                                        | `EasyMock.verify(m)`  |
+|                    | Stub                                       | Mock                          |
+|--------------------|--------------------------------------------|-------------------------------|
+| 1. Crear           | `S s = EasyMock.createNiceMock(S.class);`  |`Mock` ó `StrictMock`          |
+| 2. Esperar valor   | `EasyMock.expect(s.m()).andStubReturn(x);` |`EasyMock.expect().andReturn()`|
+| 2. Esperar execep  | `EasyMock.expect().andStubThrow()`         |`EasyMock.expect().andThrow()` |
+| 2. Esperar void    | `EasyMock.asStub()`                        |                               |
+| 3. Listo           | `EasyMock.replay(s)`                       | `EasyMock.replay(m)`          |
+| 4. registrar llamadas |                                         | `EasyMock.verify(m)`          |
 
 ---
 
