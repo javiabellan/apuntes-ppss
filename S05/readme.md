@@ -16,10 +16,6 @@
 
 
 ## 1. Identificar dependencias externas.
-
-
-## 1. Identificar dependencias externas.
-
 ```java
 public class ClassSUT
 {
@@ -31,7 +27,7 @@ public class ClassSUT
 }
 ```
 
-Hay una dependendia externa al llamar a metodo() que está definida en otro sitio
+Hay una dependendia externa al llamar a metodo() que está definida en otro sitio:
 ```java
 public class Objeto
 {
@@ -41,7 +37,7 @@ public class Objeto
 
 ## 2. Refactorizar (src/main)
 
-Creo que es cuando en una SUT se declara declara la dep. ext. (`new`) y se usa. Si se declara fuera, creo que no hay que refactorizar.
+Creo que si se declara dentro (del método SUT) la dependendia externa (`new`), es cuando hay que refactorizar.
 
 Existen 2 formas principales:
 
