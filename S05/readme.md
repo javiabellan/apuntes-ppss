@@ -76,6 +76,7 @@ public class Objeto implements InterfazObjeto
 }
 ```
 
+
 > #### Extra (paso 3)
 > El doble del objeto (stub) también implementa la interfaz
 > ```java
@@ -150,16 +151,15 @@ public class ClassSUT
 {
 	private InterfazObjeto objeto;
 	
-	ClassSUT() // Código para producción
+	ClassSUT()
 	{
 		objeto = new Objeto();
 	}
 	
-	public InterfazObjeto GetterSetterObj // Código para test
-	{
-		get { return objeto; }
-		set { objeto = value; }
-	}
+	// Código para test
+	public void setObjeto(InterfazObjeto o) {objeto=o;}
+        public InterfazObjeto getObjeto() {return apellido;} // El getter creo que no es necesario
+	
 	public sut()
 	{
 		objeto.metodo();
@@ -176,7 +176,7 @@ public class Tests
 	{
 		ObjetoStub myFakeObj = new ObjetoStub(); // Stub
 		ClassSUT   classSUT  = new ClassSUT();
-		classSUT.GetterSetterObj = myFakeObj; // Pasar stub por setter
+		classSUT.setObjeto(myFakeObj); // Pasar stub por setter
 		
 		bool resultado = classSUT.sut(); // SUT (que llamará al método del del stub)
 		assert(resultado, resultadoEsperado);
