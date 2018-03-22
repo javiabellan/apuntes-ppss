@@ -252,7 +252,7 @@ ClassSUT classSUT  = new ClassSUT(); // Ya tiene el stub inyectado
 ```java
 public class ClassSUT
 {
-	public Objeto getObjeto()
+	public Objeto getObjeto() // Método de factoría local
 	{
 		Objeto o = new Objeto();
 		return o;
@@ -266,31 +266,42 @@ public class ClassSUT
 }
 ```
 
-Paso 3: Doble (en src/test)
-```java
-public class TestableClassSUT extends ClassSUT
-{
-	private Objeto objeto;
-
-	@Override
-	public Objeto getObjeto() {return objeto;}
-
-	public void setObjeto(Objeto o) {this.objeto = o;}
-}
-```
-
-Paso 3: Stub
-```java
-public class ObjetoStub extends Objeto
-{
-	int result;
-
-	public void setResult(int salida) { this.result = salida;}
-
-	@Override
-	public int metodo(params...) {return result;}
-}
-```
+> #### Extra (paso 3) (en src/test)
+> Sobrescribrir el la clase sut,
+> ```java
+> public class TestableClassSUT extends ClassSUT
+> {
+> 	private Objeto objeto;
+> 
+> 	@Override
+> 	public Objeto getObjeto() {return objeto;}
+> 
+> 	public void setObjeto(Objeto o) {this.objeto = o;}
+> }
+> ```
+> 
+> Stub
+> ```java
+> public class ObjetoStub extends Objeto
+> {
+> 	int result;
+> 
+> 	public void setResult(int salida) { this.result = salida;}
+> 
+> 	@Override
+> 	public int metodo(params...) {return result;}
+> }
+> ```
+>
+> Test
+> ```
+>TestableClassSUT sut = new TestableClassSUT();
+>
+> ObjetoStub oStub = new ObjetoStub();
+> oStub.setResult(x);
+>
+> sut.setObjeto(oStub); // Inyectar stub
+>```
 
 ## Un parámetro en el método
 
