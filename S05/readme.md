@@ -241,7 +241,10 @@ Y en los tests
 ```java
 ObjetoStub myFakeObj = new ObjetoStub(); // Stub
 myFakeObj.setOpcion(x);
-FactoriaObjeto.setObjeto(myFakeObj); // Al ser un metodo static, simplenete lo llamas para cambiar el comportamineto
+
+FactoriaObjeto.setObjeto(myFakeObj); // Al ser un metodo static, simplenete lo llamas para cambiar el comportamineto del constructor de ClassSUT
+
+ClassSUT classSUT  = new ClassSUT(); // Ya tiene el stub inyectado
 ```
 
 ## Método de factoría local
