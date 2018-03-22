@@ -10,10 +10,14 @@ Diferencias entre Stub y Mock:
 
 Diferencias en Easymock:
 
-|                    | Stub          | Mock                   |
-|--------------------|---------------|------------------------|
-| nombre             | NiceMock      | Mock o StrictMock      |
-| registrar llamadas | No poner nada | poner `verify()`       |
+|                    | Stub                                    | Mock                   |
+|--------------------|-----------------------------------------|------------------------|
+| 1. Crear           | `S s = EasyMock.createNiceMock(S.class);`  |`Mock` ó `StrictMock`      |
+| 2. Esperar valor   | `EasyMock.expect(s.m()).andStubReturn(x);` | EasyMock.expect().andReturn()  |
+| 2. Esperar execep  | `EasyMock.expect().andStubThrow()`       | EasyMock.expect().andThrow()   |
+| 2. Esperar void    | `EasyMock.asStub()`                      |  |
+| 3. Listo           | `EasyMock.replay(s)`                      | `EasyMock.replay(m)`  |
+| 4. registrar llamadas |                                        | `EasyMock.verify(m)`  |
 
 
 Pasos con Easymock:
@@ -24,6 +28,41 @@ Pasos con Easymock:
 | 2. Expectativa                    | `EasyMock.expect(stub.metodo().andStubReturn(x);` |
 | 2. Expectativa (si tiene params)  | `EasyMock.expect(stub.metodo(anyObject()).andStubReturn(x);` |
 
+---
+
+## Si la dependendia externa es un método de la clase SUT
+
+Hacer como un mock de la clase sut, y añadirle ese método
+```java
+ClaseSUT cSUT = EasyMock.partialMockBuilder(ClaseSUT.class).addMockedMethod("metodoDepExt").createMock();
+ClaseSUT cSUT = EasyMock.createMockBuilder(ClaseSUT.class).addMockedMethods("metodoDepExt").createMock(); // otra forma no vista
+```
+
+Y en la expectativa ponemos los que nos de la gana:
+```java
+EasyMock.expect(cSUT.metodoDepExt()).andReturn(cal);
+```
+
+La forma tradicional de inyectar ese método, es con método de factoría local:
+
+Heredar la ClaseSUT, en una claseSutTestable, y sobrescribir el método para que devuelva lo que queramos, (y acurdate de inicilaizar el resultado esperado con un contructor o un setter).
+
+## Si la dependendia externa está definida como atributo en la clase SUT
+
+Además, esto de crear un mock de la clase SUT también es útil para sobreescribir atributos privados
+(que son dependencias externas). Esto es superútil si no tenemos ni ideo de como inyectar el stub.
+```java
+// Mira, te creas tu stub de mierda
+ClaseDeMiAtributo stub = EasyMock.createMock(ClaseDeMiAtributo.class);
+EasyMock.expect(stub.suMetodo()).andReturn(xxx);
+
+// Y se lo metes gracias a tu cSUT
+cSUT.atributo = stub;
+```
+
+
+
+---
 ## Easymock
 
 Imagina que tienes una nueva clase a probar `ClassTested.java`
