@@ -8,7 +8,7 @@ Diferencias entre Stub y Mock:
 | Proporcionar sólo entradas indirectas al sut  | Observar también las salidas indirectas del sut          |
 | Verificación basada en el **estado**          | Verificación basada en el **comportamiento**             |
 
-Diferencias en Easymock:
+Pasos con Easymock:
 
 |                    | Stub                                    | Mock                   |
 |--------------------|-----------------------------------------|------------------------|
@@ -18,15 +18,6 @@ Diferencias en Easymock:
 | 2. Esperar void    | `EasyMock.asStub()`                      |  |
 | 3. Listo           | `EasyMock.replay(s)`                      | `EasyMock.replay(m)`  |
 | 4. registrar llamadas |                                        | `EasyMock.verify(m)`  |
-
-
-Pasos con Easymock:
-
-| Paso          | Código |
-|-----------------------|----------------------------------------------|
-| 1. Crear stub         | `ClaseDepEx stub = EasyMock.createNiceMock(ClaseDepEx.class);` |
-| 2. Expectativa                    | `EasyMock.expect(stub.metodo().andStubReturn(x);` |
-| 2. Expectativa (si tiene params)  | `EasyMock.expect(stub.metodo(anyObject()).andStubReturn(x);` |
 
 ---
 
