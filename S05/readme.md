@@ -184,10 +184,6 @@ public class Tests
 }
 ```
 
-## Un parámetro en el método
-
-Es simplemente poner un parametro en el SUT y pasar por ahí el objeto dependencia.
-
 ## Clase factoría
 Se inicializa la dependencia en el construtor, pero a través de una clase factoría responsable de crear objetos.
 
@@ -198,10 +194,10 @@ public class FactoriaObjeto
 	
 	public static InterfazObjeto create()
 	{
-		if (objeto != null)
-			return objeto; // Código test
-		else
+		if (objeto == null)
 			return new Objeto(); // Código producción
+		else
+			return objeto; // Código test
 	}
 	
 	static void setObjeto(InterfazObjeto obj) // Llamar en código test
@@ -250,7 +246,6 @@ FactoriaObjeto.setObjeto(myFakeObj); // Al ser un metodo static, simplenete lo l
 
 ## Método de factoría local
 
-Paso 2: Refactorizar (en src/main)
 ```java
 public class ClassSUT
 {
@@ -292,3 +287,8 @@ public class ObjetoStub extends Objeto
 	@Override
 	public int metodo(params...) {return result;}
 }
+```
+
+## Un parámetro en el método
+
+Es simplemente poner un parametro en el SUT y pasar por ahí el objeto dependencia.
