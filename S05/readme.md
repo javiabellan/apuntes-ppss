@@ -36,7 +36,7 @@ public class Objeto
 }
 ```
 
-## 2. Refactorizar
+## 2. Refactorizar (src/main)
 
 Existen distintas formas:
 
@@ -52,33 +52,11 @@ Existen distintas formas:
 
 ## Interfaz
 
-Poner una capa de abastracción (interfaz).
+Poner una capa de abastracción (interfaz) a la dep. externa.
 ```java
 public interface InterfazObjeto
 {
 	public void metodo();
-}
-```
-
-El objeto (dependencia externa) ahora implementa la interfaz
-```java
-public class Objeto implements InterfazObjeto
-{
-	@Override
-	public void metodo(){...}
-}
-```
-
-El doble del objeto (stub) también implementa la interfaz
-```java
-public class ObjetoStub implements InterfazObjeto
-{
-	private int resultado;
-	
-	public ObjetoStub(int r) { this.resultado = r; }
-	
-	@Override
-	public void metodo(){//codigo controlado}
 }
 ```
 
@@ -93,6 +71,29 @@ public class ClassSUT
 	}
 }
 ```
+
+El objeto (dependencia externa) ahora implementa la interfaz
+```java
+public class Objeto implements InterfazObjeto
+{
+	@Override
+	public void metodo(){...}
+}
+```
+
+> #### Extra (paso 3)
+> El doble del objeto (stub) también implementa la interfaz
+> ```java
+> public class ObjetoStub implements InterfazObjeto
+> {
+>	private int resultado;
+>	
+>	public ObjetoStub(int r) { this.resultado = r; }
+>	
+>	@Override
+>	public void metodo(){//codigo controlado}
+> }
+> ```
 
 Hasta aquí, tenemos la implementación ficticia del stub, pero nuestro código sigue llamando al método original. Tenemos que cambiar eso, tenemos que introducir el seam. Hay muchas formas de hacerlo:
 
