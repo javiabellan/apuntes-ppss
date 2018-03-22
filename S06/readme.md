@@ -15,6 +15,15 @@ Diferencias en Easymock:
 | nombre             | NiceMock      | Mock o StrictMock      |
 | registrar llamadas | No poner nada | poner `verify()`       |
 
+
+Pasos con Easymock:
+
+| Paso          | Código |
+|-----------------------|----------------------------------------------|
+| 1. Crear stub         | `ClaseDepEx stub = EasyMock.createNiceMock(ClaseDepEx.class);` |
+| 2. Expectativa                    | `EasyMock.expect(stub.metodo().andStubReturn(x);` |
+| 2. Expectativa (si tiene params)  | `EasyMock.expect(stub.metodo(anyObject()).andStubReturn(x);` |
+
 ## Easymock
 
 Imagina que tienes una nueva clase a probar `ClassTested.java`
