@@ -35,7 +35,7 @@ Quieres probar la clase, así que añades la dependencia de `easymock` a tu `pom
 <dependency>
   <groupId>org.easymock</groupId>
   <artifactId>easymock</artifactId>
-  <version>3.5.1</version>
+  <version>3.5</version>
   <scope>test</scope>
 </dependency>
 ```
@@ -60,9 +60,9 @@ public class ClaseTest
 		Cliente cli  = new Cliente(...);
 		ClaseSut claseSut = new ClaseSut();
 
-		ClaseStub stub = EasyMock.createNiceMock(ClaseStub.class); // 1) Stub
-		EasyMock.expect(stub.doble(anyObject()).andStubReturn(10); // 2) Expectativas
-		EasyMock.replay(stub);                                     // 3) Listo
+		ClaseDepEx stub = EasyMock.createNiceMock(ClaseDepEx.class); // 1) Stub
+		EasyMock.expect(stub.metodo(anyObject()).andStubReturn(10);  // 2) Expectativas
+		EasyMock.replay(stub);                                       // 3) Listo
 
 		Factura expResult = new Factura(...);
 		Factura result    = claseSut.sut(cli,stub);
