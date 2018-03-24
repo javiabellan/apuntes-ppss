@@ -19,6 +19,11 @@ Pasos con Easymock:
 | 3. Listo           | `EasyMock.replay(s)`                       | `EasyMock.replay(m)`          |
 | 4. registrar llamadas |                                         | `EasyMock.verify(m)`          |
 
+* anyObject() → "cualquier objeto"
+* anyChar() → "cualquier char"
+* anyFloat() → "cualquier float"
+* anyInt() → "cualquier int"
+* anyString() → "cualquier objeto String"
 ---
 
 ## Si la dependendia externa es un método de la clase SUT
