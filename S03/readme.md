@@ -68,7 +68,7 @@ public class OtherIntegrationTest
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
- <!----------------------- DEPENDENCIAS ----------------------------->
+  <!----------------------- DEPENDENCIAS ----------------------------->
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -78,26 +78,29 @@ public class OtherIntegrationTest
     </dependency>
   </dependencies>
 
-  <plugins>
-    <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-surefire-plugin</artifactId>
-      <version>2.20</version>
-      <configuration> <!-- ejecutar solo una categoría (grupo) de tests -->
-        <groups>com.mycompany.SlowTests</groups>
-      </configuration>
-    </plugin>
+  <!------------------ PROCESO DE CONSTRUCCIÓN ---------------------->
+  <build>
+    <plugins>
 
-    <plugin>
-      <groupId>...</groupId>
-      <artifactId>...<artifactId>
-      <version>...</version>
-      <execution>
-        <phase>FaseC</phase>
-        <goal>g2</goal>
-      </execution>
-    </plugin>
-  </plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.20</version>
+
+        <!-- Opcional: Indicar fases y goals -->
+        <execution>
+          <phase>FaseC</phase>
+          <goal>g2</goal>
+        </execution>
+        
+        <!-- Opcional: Ejecutar solo una categoría (grupo) de tests -->
+        <configuration>
+          <groups>com.mycompany.SlowTests</groups>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
 
 
 </project>
