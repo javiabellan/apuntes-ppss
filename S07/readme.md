@@ -14,7 +14,7 @@ Encontrar defectos de la INTERACCIÓN entre las unidades.
 * **Memoria compartida**: Un componente escribe en memoria y otro lee.
 Ej sensores y sist. embebidos.
 * **Interfaces procedurales**: Un componente (clase) encapsula un cjto. de procedimientos (métodos) que
-pueden llamarse desde otras clases.
+pueden llamarse desde otras clases.**
 * **Paso de mensajes**: Solicitar información y devolver contenido. Ej: cliente-servidor.
 
 ### Consejos.
@@ -25,3 +25,13 @@ pueden llamarse desde otras clases.
 * Tests de memoria compartida que sigan el orden que se haría en el programa.
 
 ### Estrategias
+Recuerda que estamos probando interacción entre componentes, no componetes en sí.
+
+* **Big bang**: Todo a la vez.
+* **Top-down**: De mayor nivel de abstracción a menos.
+* **Bottom-up**: De menor nivel de abstracción a mayor.
+* **Sandwich**: Mezcla de las 2 antariores.
+* **Dirigida por los riesgos**: Componentes con más probabilidad de error primero.
+* **Dirigida por las funcionalidades**: Ir probando compontentes de una funalida en concreto y luego de otra y así.
+
+**Pruebas de REGRESIÓN**: consisten en repetir las pruebas realizadas cuando integramos un nuevo componente.
