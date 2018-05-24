@@ -39,20 +39,25 @@ Recuerda que estamos probando interacción entre componentes, no componetes en s
 ---
 
 # DbUnit
-Basado en JUnit. Controla la dep. ext. de la BBDD
+Basado en JUnit. Controla la dep. ext. de la BBDD. Dependencias en el POM:
 
 ```xml
-<dependency>
-    <groupId>org.dbunit</groupId>
-    <artifactId>dbunit</artifactId>
-    <version>2.5.4</version>
-    <scope>test</scope>
-</dependency>
-<dependency> 
-    <groupId>mysql</groupId> 
-    <artifactId>mysql-connector-java</artifactId> 
-    <version>5.1.38</version> 
-</dependency>
+<dependencies>
+    <!--Librería DbUnit-->
+    <dependency>
+        <groupId>org.dbunit</groupId>
+        <artifactId>dbunit</artifactId>
+        <version>2.5.4</version>
+        <scope>test</scope>
+    </dependency>
+
+    <!--Librería para acceder a una BD MySql-->
+    <dependency> 
+        <groupId>mysql</groupId> 
+        <artifactId>mysql-connector-java</artifactId> 
+        <version>5.1.38</version> 
+    </dependency>
+</dependencies>
 ```
 
 ### Escenario típico
@@ -75,6 +80,17 @@ Métodos tipicos de esta clase factoría son:
 2. Cargar datos a la BBDD
 3. Usar DbUnit para aserciones
 
+`dataset-init.xml`: Fichero que se usa para cargar inicialmente un dataset vacío
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+
+    <customer />
+
+</dataset>
+```
+
+`dataset-expected.xml`: Fichero que se usa como dataset de resultado esperado
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
@@ -95,30 +111,36 @@ Métodos tipicos de esta clase factoría son:
 
 ```java
 private Factoria factoria;
-private IDatabaseTester databaseTester;
+private IDatabaseTester databaseTester; // Instancia de IDatabaseTester para acceder a la BD
     
 @Before
 public void setUp() throws Exception
 {
-    // Permite conexion con la BD
+    // Fijamos los datos para acceder a la BD
     databaseTester = new JdbcDatabaseTester("driver", "url", "login", "pass");
 
-    // Datos de prueba
+    // Dataset inicial: con una tabla vacía por ejemploa
     DataFileLoader loader = new FlatXmlDataFileLoader();
-    IDataSet dataSet = loader.load("/dataset.xml");	 
+    IDataSet dataSet = loader.load("/dataset-init.xml");	 
 
     databaseTester.setDataSet(dataSet);  // Determina los datos de prueba
-    databaseTester.onSetup();            // Realiza una operación CLEAN_INSERT (inserta en la BBDD el dataSet)
+    databaseTester.onSetup();            // Realiza una operación CLEAN_INSERT
+    // CLEAN_INSERT = Borra los datos de las tablas del dataset, e inserta el dataSet en la BBDD
+    
+    factoria = Factoria.getInstance();
 }
 
 @Test
 public void testInsert() throws Exception
 {
+    /////////////////////////////////////////////////////// RESULTADO REAL
+
+    // Datos de entrada del caso de prueba
     Clase c = factoria.create(1,"Javi", "Abellan");
     c.setStreet("Calle falsa 123");
     c.setCity("Elda");
-            
-    factoria.insert(c);
+    
+    factoria.insert(c); // Método a probar
 
     // Recuperamos la conexión con la BD
     IDatabaseConnection connection = databaseTester.getConnection();
@@ -131,6 +153,105 @@ public void testInsert() throws Exception
     IDataSet databaseDataSet = connection.createDataSet();
 
     // Recuperamos una tabla
-    ITable actualTable = databaseDataSet.getTable("customer");    
+    ITable actualTable = databaseDataSet.getTable("customer");
+    
+    
+    /////////////////////////////////////////////////////// RESULTADO ESPERADO
+    
+    // introducimos los valores esperados desde el fichero customer-expected.xml
+    DataFileLoader loader = new FlatXmlDataFileLoader();
+    IDataSet expectedDataSet = loader.load("/dataset-expected.xml");
+    
+    ITable expectedTable = expectedDataSet.getTable("customer");
+    
+    
+    /////////////////////////////////////////////////////// COMPARAR
+    
+    Assertion.assertEquals(expectedTable, actualTable);
 }
+```
+
+
+
+## Ciclo de vida
+
+
+| Fase                   | Goal por defecto        |
+|------------------------|-------------------------|
+| compile                | compiler:compile        |
+| process-test-resources | resources:testResources |
+| test-compile           | compiler:testCompile    |
+| test                   | surefire:test           |
+| package                | jar:jar                 |
+
+| Fase                 | Goal a añadir en el POM   |
+|----------------------|---------------------------|
+| pre-integration-test | sql:execute               |
+| integration-test     | failsafe:integration-test |
+| verify               | failsafe:verify           |
+
+
+Las goal se añaden en los plugins del POM:
+
+```xml
+<build>
+    <plugins>
+
+        <!--Plugin failsafe para ejecutar los tests de integración-->
+        <plugin> 
+            <groupId>org.apache.maven.plugins</groupId> 
+            <artifactId>maven-failsafe-plugin</artifactId> 
+            <version>2.20</version> 
+            <executions> 
+                <execution> 
+                <goals> 
+                    <goal>integration-test</goal> 
+                    <goal>verify</goal> 
+                </goals> 
+                </execution> 
+            </executions> 
+        </plugin>
+
+        <!--Plugin para ejecutar sentencias SQL-->
+        <plugin> 
+            <groupId>org.codehaus.mojo</groupId> 
+            <artifactId>sql-maven-plugin</artifactId> 
+            <version>1.5</version> 
+
+            <!--Dependencia con el driver JDBC para acceder a una BBDD MySQL-->
+            <dependencies>
+                <dependency> 
+                    <groupId>mysql</groupId> 
+                    <artifactId>mysql-connector-java</artifactId> 
+                    <version>5.1.38</version> 
+                </dependency>
+            </dependencies>
+
+            <!--Configuración del driver JDBC-->
+            <configuration> 
+                <driver>com.mysql.jdbc.Driver</driver> 
+                <url>jdbc:mysql://localhost:3306</url>
+                <username>root</username> 
+                <password>ppss</password> 
+            </configuration> 
+
+            <!--inicialización de la tabla customer, antes ejecutar los test de integración-->
+            <executions> 
+                <execution>  
+                    <id>create-customer-table</id> 
+                    <phase>pre-integration-test</phase> 
+                    <goals> 
+                        <goal>execute</goal>  
+                    </goals>  
+                    <configuration> 
+                        <srcFiles>
+                            <srcFile>src/test/resources/sql/create_table_customer.sql</srcFile> 
+                        </srcFiles> 
+                    </configuration> 
+                </execution>
+            </executions> 
+        </plugin>
+        
+    </plugins>
+</build>
 ```
