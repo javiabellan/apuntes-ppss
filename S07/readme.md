@@ -2,7 +2,9 @@
 
 Objetivo:
 Encontrar defectos de la INTERACCIÓN entre las unidades.
-* Comprobar que el sistema funciona cuando las uds son cominadas
+* Se necesitan mínimo 2 uds para realizar pruebas de integración
+  * 2 métodos
+  * 1 método y la BBDD
 * Las unidades deben tener una buena interfaz para usarlas.
 * Construir version operativa del sistema poco a poco
   * Agregar uds de forma incremental
@@ -55,7 +57,8 @@ Basado en JUnit. Controla la dep. ext. de la BBDD. Dependencias en el POM:
     <dependency> 
         <groupId>mysql</groupId> 
         <artifactId>mysql-connector-java</artifactId> 
-        <version>5.1.38</version> 
+        <version>5.1.38</version>
+	<scope>test</scope>
     </dependency>
 </dependencies>
 ```
