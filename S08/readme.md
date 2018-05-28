@@ -4,9 +4,9 @@ Objetivo: valorar en qué **grado** el software desarrollado satisface los **cri
 
 Los criterios de aceptación deben ser DEFINIDOS y ACORDADOS entre el desarrollador y el cliente.
 
-Tras las pruebas de sistema, se ejecutan los tests de aceptación. Y si estos son aceptados, se lleva producción.
+Tras las pruebas de sistema, se ejecutan las pruebas de aceptación. Y si son aceptadas, se lleva producción.
 
-Las pruebas deben basarse en la especificación y no en la implementación (caja negra, functional testing).
+Las pruebas de acep. deben basarse en la especificación y no en la implementación (caja negra, functional testing).
 
 
 ### Dirigias por
