@@ -71,3 +71,29 @@ Hay 3 tipos:
   * Verify: no detiene la ejec. `verifyText`, `verifyNotText`, `verifyElementPresent`
   * Assert: detiene la ejec. `assertTitle`
   * WaitFor: Espera antes de detener. `waitForPageToLoad`, `waitForElementPresent)` (tras `click`)
+
+
+# Ejercicios
+
+
+#### a) Dados los tests implementados en prácticas con Katalon Recorder, indica con cuál de los dos métodos de diseño de casos de prueba vistos en clase hemos obtenido dichos tests. Justifica claramente tu respuesta.
+
+Caja negra: pruebas funcionales:
+
+* ~Pruebas unitarias~
+  * ~Método de particiones equivalentes~
+* ~Pruebas de sistema~
+  * ~Método de diagramas de transición de estados~
+* Pruebas de aceptación
+  * Método de pruebas basado en requerimientos?
+  * Método de pruebas basado en escenarios?
+---
+
+#### b) Podemos integrar la ejecución de los tests citados en el apartado a) con la construcción del proyecto? Justifica claramente tu respuesta, indicando por qué no podemos hacerlo, si tu respuesta es negativa, y cómo podemos hacerlo si tu respuesta es afirmativa.
+
+No
+
+---
+
+#### c) Pon un ejemplo de caso de prueba diseñado con el método basado en escenarios para realizar una prueba de uso Bitbucket, de forma que comprobemos que la práctica P08, que está formada por 2 ejercicios se ha subido correctamente (el escenario debe contemplar las acciones previas a la consulta en Bitbucket). Implementa un driver utilizando comandos selenese para dicho caso de prueba
+
