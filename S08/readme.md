@@ -11,7 +11,7 @@ Las pruebas de acep. deben basarse en la especificación y no en la implementaci
 
 ### Dirigias por
 
-*  **El cliente** (User Acceptance Testing, UAT)
+* **El cliente** (User Acceptance Testing, UAT)
   * Pruebas alpha: El desarrollador dice lo (poco) que hay, y el user prueba?
   * Pruebas beta: Usuarios reales en un entorno real. El desarrollador observa?
 * **Los desarrolladores** (Business Acceptance Testing)
