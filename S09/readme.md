@@ -29,7 +29,7 @@ Lacalizar:
 * `By.className("required")`
 * `By.linkText("Register here")`
 * `By.partialLinkText("here")`
-* `By.xpath(????)`
+* `By.xpath("//table//tr[@class='heading3']")`
 * `By.cssSelector("input[value='Business']")`
 
 Una vez localizado, podemos realizar acciones.
@@ -139,3 +139,141 @@ Es una buena práctica usar el patrón de **Page Object**.
 Básicamente consiste en crear una clase para cada página web, donde:
 * Los atributos serán los elementos de la página web.
 * Los métodos serán todos los servicios que nos proporciona la página.
+
+##### Ejemplo
+
+Page objects en `src/main/java`
+
+```java
+public class LoginPage
+{
+	WebDriver  driver;
+
+	WebElement userID;
+	WebElement password;
+	WebElement login;
+	WebElement loginTitle;
+
+	public LoginPage(WebDriver driver)
+	{
+		this.driver = driver;
+		this.driver.get("http://demo.guru99.com/V4");
+
+		userID     = driver.findElement(By.name("uid"));
+		password   = driver.findElement(By.name("password"));
+		login      = driver.findElement(By.name("btnLogin"));
+		loginTitle = driver.findElement(By.className("barone"));
+	}
+  
+	public void login(String user, String pass)
+	{
+		userID.sendKeys(user);
+		password.sendKeys(pass);
+		login.click();
+	}
+  
+	public String getPageTitle()
+	{
+		return loginTitle.getText();
+	}
+}
+```
+
+Tests en `src/test/java`
+
+```java
+public class TestLoginPage
+{
+	WebDriver driver;
+	LoginPage poLogin;
+	ManagerPage poManagerPage;
+	
+	@Before
+	public void setup()
+	{
+		driver  = new FirefoxDriver();
+		poLogin = new LoginPage(driver);
+	}
+	
+	@Test
+	public void test_Login_Correct()
+	{
+		String loginPageTitle = poLogin.getLoginTitle();
+		Assert.assertTrue(loginPageTitle.toLowerCase().contains("guru99 bank"));
+		
+		poLogin.login("mngr34733", "AbEvydU");
+		poManagerPage = new ManagerPage(driver);
+
+		Assert.assertTrue(poManagerPage.getHomePageDashboardUserName()
+				.toLowerCase().contains("manger id : mngr34733"));
+
+		driver.close();
+	}
+}
+```
+
+
+### PageObject con PageFactory (la forma buena)
+
+```java
+public class LoginPage
+{
+	WebDriver driver;
+	
+	@FindBy(name="uid")         WebElement userID;
+	@FindBy(name="password")    WebElement password;
+	@FindBy(name="btnLogin")    WebElement login;
+	@FindBy(className="barone") WebElement loginTitle;
+
+	public LoginPage(WebDriver driver)
+	{
+		this.driver = driver;
+		this.driver.get("http://demo.guru99.com/V4");
+	}
+	
+	public void login(String user, String pass)
+	{
+		userID.sendKeys(user);
+		password.sendKeys(pass);
+		login.click();
+	}
+	
+	public String getLoginTitle()
+	{
+		return loginTitle.getText();
+	}
+}
+```
+
+Test:
+
+```java
+public class TestLoginPage
+{
+	WebDriver driver;
+	LoginPage poLogin;
+	ManagerPage poManagerPage;
+	
+	@Before
+	public void setup()
+	{
+		driver = new FirefoxDriver();
+		poLogin = PageFactory.initElements(driver, LoginPage.class);
+	}
+	
+	@Test
+	public void test_Login_Correct()
+	{
+		String loginPageTitle = poLogin.getLoginTitle();
+		Assert.assertTrue(loginPageTitle.toLowerCase().contains("guru99 bank"));
+
+		poLogin.login("mngr34733", "AbEvydU");
+		poManagerPage = PageFactory.initElements(driver, ManagerPage.class);
+
+		Assert.assertTrue(poManagerPage.getHomePageDashboardUserName()
+			.toLowerCase().contains("manger id : mngr34733"));
+
+		driver.close();
+	}
+}
+```
