@@ -23,14 +23,14 @@ Una página web está formada por elementos HTML, que se denominan **WebElements
 ```java
 WebElement searchBox = driver.findElement(By.name("q"));
 ```
-Lacalizar:
-* `By.name("username")`
-* `By.id("loginForm")`
-* `By.className("required")`
-* `By.linkText("Register here")`
-* `By.partialLinkText("here")`
-* `By.xpath("//table//tr[@class='heading3']")`
-* `By.cssSelector("input[value='Business']")`
+> Formas de localizar:
+> * `By.name("username")`
+> * `By.id("loginForm")`
+> * `By.className("required")`
+> * `By.linkText("Register here")`
+> * `By.partialLinkText("here")`
+> * `By.xpath("//table//tr[@class='heading3']")`
+> * `By.cssSelector("input[value='Business']")`
 
 Una vez localizado, podemos realizar acciones.
 
@@ -84,7 +84,7 @@ public void signIn()
   
   expectedTitle = "Inicio de sesión - Cuentas de Google";
   actualTitle   = driver.getTitle();
-  Assert.assertEquals("Sign In Fallido", expectedTitle,actualTitle);
+  Assert.assertEquals("Sign In Fallido", expectedTitle, actualTitle);
 
   driver.close(); //cerramos el navegador
 }
@@ -172,7 +172,7 @@ public class LoginPage
 		login.click();
 	}
   
-	public String getPageTitle()
+	public String getLoginTitle()
 	{
 		return loginTitle.getText();
 	}
@@ -277,3 +277,23 @@ public class TestLoginPage
 	}
 }
 ```
+
+# Ejercicios
+
+#### a) Dados los tests implementados en prácticas con Katalon Recorder ¿Podríamos haber implementado esos mismos tests con Selenium WebDriver? Justifica claramente tu respuesta.
+
+Sí, porque WebDriver añade mas lógica (bucles, condiciones) a la forma sequencial que tiene Katalon de hacer pruebas web.
+
+---
+
+#### b) ¿Podemos integrar la ejecución de los tests anteriores (que usan Selenium WebDriver) con la construcción del proyecto? Justifica claramente tu respuesta, indicando por qué no podemos hacerlo, si tu respuesta es negativa, y cómo podemos hacerlo si tu respuesta es afirmativa.
+
+los tests de Selenium/katalon No se pueden integrar en el proyecto porque no es java.
+
+Pero los tests de Selenium WebDriver si se podrían integrar pero en el laboratorio los hemos puesto en un proyecto aparte
+
+---
+
+#### c) Supón que accedemos a un sitio web (http://books_like.es/comics), que nos muestra la  sección de cómics, estamos interesados en leer el último número del comic de “Conan”. En esa página podemos leer cómics on-line, y además podemos ver el número de opiniones “me gusta” y “no me gusta” realizados de forma anónima por los usuarios que han leído el cómic. Cada vez que un usuario “pincha” sobre el icono “me gusta” o “no me gusta” (solamente puede activarse uno cada vez) se incrementa en uno el contador correspondiente..
+
+##### Implementa con Webdriver (usando el patrón Page Object) un test en el que accedemos a http://books_like.es/comics, selecionamos el comic “Conan” y luego pulsamos sobre “Me gusta” (no es necesario que implementes los métodos de las page object, pero tienes que indicar para dichas clases, los atributos y las signaturas de los métodos que contienen).
