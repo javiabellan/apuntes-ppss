@@ -41,7 +41,15 @@ searchBox.submit();
 ```
 
 Otras acciones comunes a todos los WenElements son:
-* `click()`
+* Ratón
+  * `click()` Click donde se encuentre
+  * `click(WebElement onElement)` Click a elemento
+  * `doubleClick()`
+  * `contextClick()`
+* Teclado
+  * `sendKeys(CharSequence keysToSend)`
+  * `keyDown(Keys theKey)` (para Shift, Ctrl, Alt)
+  * `keyUp(Keys theKey)` (para Shift, Ctrl, Alt)
 * `getAttribute()`
 * `getLocation()`
 * `getText()`
@@ -49,7 +57,7 @@ Otras acciones comunes a todos los WenElements son:
 * `isEnabled()`
 * `isSelected()`
 
-Ejemplo de un test:
+### Ejemplo de un test
 
 ```java
 @Test
@@ -82,23 +90,52 @@ public void signIn()
 }
 ```
 
+### Esperar
+
 Si no esperamos un ratico a que se carge la página, es probable que no se cargue lo que buscamos
 (y se lanze un `NoSuchElementException`)
 
-Así que podemos esperar de forma implicita: Esperar un tiempo sí o sí.
+**Wait implicito**: Esperar siempre un tiempo prestablecido para todas las operaciones del driver.
 
 ```java
-WebDriver driver = new FirefoxDriver();
 driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-driver.get("www.google.com");
 ```
 
-O esperar hasta que aparezca un WebElement concreto  (explicito):
+También puedes usar un **wait explícito**,
+en cuyo caso afectará al elemento al que asociemos el temporizador.
+El `until` espera hasta que aparezca un WebElement concreto:
 
 ```java
-//Create Wait using WebDriverWait.
-//This will wait for 10 seconds for timeout before
-//title is updated with search term
 WebDriverWait wait = new WebDriverWait(driver, 10);
-wait.until(ExpectedConditions.titleContains("selenium"));
+wait.until(ExpectedConditions.titleContains("selenium")); // Option a) Wait until title is updated
+wait.until(ExpectedConditions.alertIsPresent());          // Option b) Wait until alert appears
 ```
+
+> RECUERDA: Los waits van en el src, no en los tests
+
+### POM
+
+````xml
+<dependencies>
+  <dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>           <!-- todos los nav -->
+    <artifactId>selenium-firefox-driver</artifactId> <!-- solo firefox -->
+    <version>3.11.0</version>
+  </dependency>
+</dependencies>
+```
+
+Podríamos usar categorías y poner los tests en `src/test/java`
+pero en el laboratorio hemos visto que los ponemos en un **proyecto aparte**,
+ya que el fuente es una pagina web.
+
+### Page Object Pattern
+
+Ya que nuestros tests son muy dependientes de la la interfaz de la página web,
+y un pequeño puto cambio nos puede joder todos los tests.
+Es una buena práctica usar el patrón de **Page Object**.
+
+Básicamente consiste en crear una clase para cada página web, donde:
+* Los atributos serán los elementos de la página web.
+* Los métodos serán todos los servicios que nos proporciona la página.
