@@ -115,7 +115,7 @@ wait.until(ExpectedConditions.alertIsPresent());          // Option b) Wait unti
 
 ### POM
 
-````xml
+```xml
 <dependencies>
   <dependency>
     <groupId>org.seleniumhq.selenium</groupId>
