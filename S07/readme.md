@@ -1,7 +1,7 @@
 # Pruebas de integración
 
 Objetivo:
-Encontrar defectos de la INTERACCIÓN entre las unidades.
+Encontrar defectos de la **interacción** entre las unidades.
 * Se necesitan mínimo 2 uds para realizar pruebas de integración
   * 2 métodos
   * 1 método y la BBDD
@@ -258,3 +258,24 @@ Las goal se añaden en los plugins del POM:
     </plugins>
 </build>
 ```
+
+# Ejercicios
+
+#### Supongamos que tenemos que implementar tests para el método `void addAlumno(Alumnoalu)`, que añade la información del objeto Alumno en una base de datos. Contesta a lassiguientes preguntas, justificando claramente tus respuestas:
+
+#### a) Justifica por qué podemos realizar pruebas de integración sobre dicho método.
+
+Porque el método lo único que hace es introducir un alumno en la bbdd, con lo que integramos el método con la bbdd. Estamos integrando el método con la bbdd, con lo que ya son 2 unidades, una de nuestro código fuente y otra que es la bbdd.
+
+---
+
+#### b) Indica qué librerías, de las vistas en clase, necesitarías para implementar dichos tests deintegración y cómo configurarías el pom del proyecto con dichas librerías. Justificaclaramente para qué necesitas cada una de las librerías.
+
+Driver mysql, driver junit, librería mysql, librería dbunit. SOLO LIBRERIAS, no plugins.
+
+---
+
+#### c) Muestra todo el código necesario para implementar un test de integración suponiendo queel objeto Alumno está formado por los atributos id (de tipo int), nombre, dirección, estos dos últimos de tipo String, y que la base de datos contiene la tabla alumno, con los camposalu_id, alu_nombre, alu_direccion. El método añade los datos del alumno en la citada tabla. Supón también que la tabla alumno inicialmente está vacía.
+
+Todo el código necesario, los tests y el xml con el dataset inicial y el xml con el dataset final.
+Puede preguntar dónde va cada fichero.
