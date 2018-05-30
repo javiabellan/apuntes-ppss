@@ -118,6 +118,11 @@ wait.until(ExpectedConditions.alertIsPresent());          // Option b) Wait unti
 ```xml
 <dependencies>
   <dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.12</version>
+  </dependency>
+  <dependency>
     <groupId>org.seleniumhq.selenium</groupId>
     <artifactId>selenium-java</artifactId>           <!-- todos los nav -->
     <artifactId>selenium-firefox-driver</artifactId> <!-- solo firefox -->
