@@ -92,7 +92,7 @@ if(cond1 && cond2) {
 
 #### b) Cita qué 3 métricas aparecen en un informe de Cobertura e indica qué es lo que mide cada una de ellas
 
-* Cobertura de **Líneas** (Line coverage): Probar cada sentencia.
+* Cobertura de **Líneas** (Line coverage): Número de líneas de nuestro código fuente que son recorridas cuando ejecutamos nuestrso tests.
 * Cobertura de **Ramas** (Branch coverage): Aunque para nosotros es cobertura de DECISIONES, la herramienta Cobertura, considera el porcentaje de condiciones cubiertas frente al total de condiciones en el programa.
-  * Juan Pablo: calcula la cobertura de condiciones, el número de condiciones de código fuente que recorren nuestros tests. Número de líneas de nuestro código fuente que son recorridas cuando ejecutamos nuestrso tests.
+  * Juan Pablo: calcula la cobertura de condiciones, el número de condiciones de código fuente que recorren nuestros tests.
 * **Complejidad ciclomática** (Complexity): cota superior del número máximo de casos de prueba a realizar.
