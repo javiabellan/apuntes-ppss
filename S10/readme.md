@@ -33,7 +33,7 @@ Estas propiedades emergentes (de los criterios de acepación) deben ser **cuanti
 
 * **Pruebas de carga**: Validan el rendimiento. *"Una petición se debe tratar en menos de 2s cuando existen 10000 usuarios"*
 * **Pruebas de stress**: "Forzar" peticiones al sistema por encima del límite del diseño del software. Fiabilidad y robustez.
-* **Pruebas estadísticas**:
+* **Pruebas estadísticas**: Evaluan la fidelidad.
   1. Construir un "perfil operacional" que refleje el uso real del sistema.
   2. Generar un conjunto de datos de prueba que reflejen dicho perfil operacional.
   3. Probar dichos datos midiendo el número de fallos y el tiempo entre fallos. Calculando así (estadisticamente) la fiabilidad.
@@ -42,40 +42,29 @@ Estas propiedades emergentes (de los criterios de acepación) deben ser **cuanti
 
 #### Paso 1:
 
-Perfil operacional
+**Perfil operacional**. (Refleja el uso real del sistema).
 
-| Clase de entrada | Aparece |
-|------------------|---------|
-| C1               | 50      |
-| C2               | 15      |
-| C3               | 15      |
-| C4               | 15      |
-| C5               | 5       |
+| Clase de entrada | Prob. de ocurrencia | Intervalo |
+|------------------|---------------------|-----------|
+| C1               | 50%                 | 1-49      |
+| C2               | 15%                 | 50-63     |
+| C3               | 15%                 | 64-78     |
+| C4               | 15%                 | 79-94     |
+| C5               | 5%                  | 95-99     |
 
-#### Paso 2
+#### Paso 2:
 
-| Clase de entrada | Distrib. Prob. | Intervalo |
-|------------------|----------------|-----------|
-| C1               | 50%            | 1-49      |
-| C2               | 15%            | 50-63     |
-| C3               | 15%            | 64-78     |
-| C4               | 15%            | 79-94     |
-| C5               | 5%             | 95-99     |
+**Cjto de datos de prueba** que reflejen el perfil operacional. (Se generan números aleatorios entre 1 y 99).
+
+`13-94-22-24-45-56-81-19-31-69-45-9-38-21-52-84-86-97-...`
+
+Y se derivan casos de prueba:
+
+`C1-C4-C1-C1-C1-C2-C4-C1-C1-C1-C3-C1-C1-C1-C1-C2-C4-C4-C5-...`
 
 #### Paso 3:
 
-Se generan números aleatorios entre 1 y 99, por ejemplo:
-
-13-94-22-24-45-56-81-19-31-69-45-9-38-21-52-84-86-97-...
-
-#### Paso 4:
-
-Se derivan casos de prueba según su distribución de probabilidad:
-
-C1-C4-C1-C1-C1-C2-C4-C1-C1-C1-C3-C1-C1-C1-C1-C2-C4-C4-C5-...
-
-A continuación deberíamos ejecutar las pruebas midiendo el número de fallos y el tiempo entre fallos
-
+Probar dichos datos (ejecutar las pruebas) midiendo el **número de fallos** y el **tiempo entre fallos**, calculando así la fiabilidad (MTTF, MTTR, y MTBF).
 
 
 ## JMeter
