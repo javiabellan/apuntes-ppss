@@ -85,7 +85,8 @@ Un **plan de pruebas** JMeter está formado por por:
     * Interleave controller: Ejecuta un solo hijo en cada iteración, hasta que se ejcutan todos de forma secuencial.
   * Temporizador (Timer): Permiten introducir pausas antes de cada una de las peticiones de cada hilo.
   * Aserciones de respuesta: Permiten hacer afirmaciones sobre las respuestas recibidas del sampler.
-  * Listeners, , , Pre-Processors, Post-Processors
+  * Listeners: Almacenar en el disco los resultados de las peticiones realizadas.
+  * Pre-Processors y Post-Processors
 
 > En el grupo de hilos se especifica:
 > * Cuántos hilos (usurarios) actuarán en paralelo.
@@ -93,10 +94,23 @@ Un **plan de pruebas** JMeter está formado por por:
 
 Y Se ejecutan en este orden:
 
-1. Configuration	elements	
-2. Pre-Processors	
-3. Timers	
-4. Sampler	
-5. Post-Processors	(unless	SampleResult	is	null)	
-6. AsserRons	(unless	SampleResult	is	null)	
-7. Listeners	(unless	SampleResult	is	null)	
+1. Configuration elements
+2. Pre-Processors
+3. Timers
+4. Sampler
+5. Post-Processors (unless SampleResult is null)
+6. AsserRons (unless SampleResult is null)
+7. Listeners (unless SampleResult is null)
+
+# Ejercicios
+
+#### Contesta a las siguientes cuestiones sobre el servidor proxy http en JMeter:
+
+##### a) ¿Para qué se utiliza?
+
+##### b) Cita un caso concreto de su uso en la práctica del laboratorio.
+
+##### c) Indica los pasos a seguir para utilizarlo (sin incluir parámetros concretos de con>iguración)
+
+
+#### Dado el siguiente plan JMeter y la con>iguración del grupo de hilos, indica la secuencia ordenada de las peticiones http que se ejecutan:
