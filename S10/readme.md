@@ -70,6 +70,33 @@ Probar dichos datos (ejecutar las pruebas) midiendo el **número de fallos** y e
 ## JMeter
 
 Apache JMeter es una herramienta diseñada para medir el rendimiento **mediante pruebas de carga**.
+(Permite trabajar con muchos tipos de aplicaciones).
 
-* Permite múltiples hilos de ejecución concurrente.
-* JMeter permite trabajar con muchos tipos distintos de aplicaciones.
+Un **plan de pruebas** JMeter está formado por por:
+* Uno o más **grupos de hilos** (Thread Groups) que a su vez tiene:
+  * Samplers (muestreadores) envían peticiones a un servidor. ![logo](http
+    * Petición HTTP
+    * Petición FTP
+  * Elementos de Configuración (Configuration Elements): Trabajan conjuntamente con un sampler.
+  * Controladores lógicos (Logic Controllers): Actúan sobre sus elementos hijo
+    * Simple controller: Simplemente agrupa.
+    * Loop controller: Itera un número de veces.
+    * Only once controller: Sólo se procesa una vez en el plan de pruebas.
+    * Interleave controller: Ejecuta un solo hijo en cada iteración, hasta que se ejcutan todos de forma secuencial.
+  * Temporizador (Timer): Permiten introducir pausas antes de cada una de las peticiones de cada hilo.
+  * Aserciones de respuesta: Permiten hacer afirmaciones sobre las respuestas recibidas del sampler.
+  * Listeners, , , Pre-Processors, Post-Processors
+
+> En el grupo de hilos se especifica:
+> * Cuántos hilos (usurarios) actuarán en paralelo.
+> * Y el periodo de subida (RAMP-UP) es tiempo que tarda en crearse los hilos (50 hilos y 100s -> un hilo cada 2s).
+
+Y Se ejecutan en este orden:
+
+1. Configuration	elements	
+2. Pre-Processors	
+3. Timers	
+4. Sampler	
+5. Post-Processors	(unless	SampleResult	is	null)	
+6. AsserRons	(unless	SampleResult	is	null)	
+7. Listeners	(unless	SampleResult	is	null)	
