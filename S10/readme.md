@@ -16,11 +16,17 @@ Estas propiedades emergentes (de los criterios de acepación) deben ser **cuanti
 * ~*"Las peticiones se tienen que servir en un tiempo razonable"*~ **Mal**
 * *"Las peticiones se tienen que servir en menos de 5 segundos"* **Bien**
 
-## Métricas de las propiedades emergentes no funcionales
+## Métricas
 
-* **Fiabilidad**: Se utilizan las métricas MTTF (Mean Time To Failure), MTTR(Mean Time To Repair), y MTBF=MTTF+MTTR (MTBF: Mean time between failures)
-* **Disponibilidad**: Se utiliza la métrica MTTR para medir el "downtime" del sistema
-* **Mantenibilidad**: Se utiliza la métrica MTTR (que refleja el tiempo consumido en analizar un defecto correctivo, diseñar la modificación, implementar el cambio, probarlo y distribuirlo)
+* **MTTF**: Mean Time To Failure (uptime)
+* **MTTR**: Mean Time To Repair (downtime)
+* **MTBF**=MTTF+MTTR: Mean time between failures
+
+![img](metrics.jpg)
+
+* **Fiabilidad**: Se utilizan las métricas MTTF, MTTR, y MTBF.
+* **Disponibilidad**: Se utiliza la métrica MTTR para medir el "downtime".
+* **Mantenibilidad**: Se utiliza la métrica MTTR que refleja el tiempo arreglar defecto correctivo.
 * **Escalabilidad**: Utiliza el número de transacciones (operaciones) por unidad de tiempo.
 
 ## Ejemplos de pruebas
