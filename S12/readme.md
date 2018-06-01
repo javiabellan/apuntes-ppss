@@ -50,19 +50,51 @@ Planificar un proyecto...
 > * Demostrar que el software satisface los requerimientos.
 > * Descubrir situaciones en las que el comportamiento del soMware es incorrecto, indeseable, o no conforme a las especificaciones
 
-* **Planificación y control**
-  * Planificación: Se determina ¿QUÉ? se va a probar, ¿CÓMO?, ¿QUIÉN? y ¿CUÁNDO?
-  * Control: Se determina QUÉ se va a hacer si los planes no se ajustan a la realidad.
-* **Analisis y diseño**
-  * Se determina qué CASOS DE PRUEBA se van a utilizar 
-  * Un caso de prueba es un DATO CONCRETO + RESULTADO ESPERADO
-* **Implementación y ejecución**
-  * Se implementan y ejecutan los tests. Es la parte más visible, pero no es posible que los test sean efectivos sin realizar los pasos anteriores
-* **Evaluar informe**
-  * Se verifica que se alcanzan los comple'on criteria (p.ej 85% de cobertura) y se genera un informe
-* **Actividades finales**
-  * En este punto las pruebas ya han finalizado. Se trata de asegurar que los informes están disponibles, ... 
+1. **Planificación y control**
+    * Planificación: Se determina ¿QUÉ? se va a probar, ¿CÓMO?, ¿QUIÉN? y ¿CUÁNDO?
+    * Control: Se determina QUÉ se va a hacer si los planes no se ajustan a la realidad.
+2. **Analisis y diseño**
+    * Se determina qué CASOS DE PRUEBA se van a utilizar 
+    * Un caso de prueba es un DATO CONCRETO + RESULTADO ESPERADO
+3. **Implementación y ejecución**
+    * Se implementan y ejecutan los tests. Es la parte más visible, pero no es posible que los test sean efectivos sin realizar los pasos anteriores
+4. **Evaluar informe**
+    * Se verifica que se alcanzan los comple'on criteria (p.ej 85% de cobertura) y se genera un informe
+5. **Actividades finales**
+    * En este punto las pruebas ya han finalizado. Se trata de asegurar que los informes están disponibles, ... 
 
 ### Recordar: Niveles de las pruebas
 
+* **UNIDAD**
+  * **Objetivo**: Encontrar defectos en las unidades. Deben de probarse de forma AISLADA.
+  * **Diseño**: Camino básico (CB) y Particiones equivalentes (CN) 
+  * **Implementación**: Java, Maven, JUnit, EasyMock.
+* **INTEGRACIÓN**
+  * **Objetivo**: Encontrar defectos en la interacción de las unidades. Debe establecerse un ORDEN de integración.
+  * **Diseño**: Guías (consejos) en función de los tipos de interfaces (CN).
+  * **Implementación**: Java, Maven, JUnit, DbUnit.
+* **SISTEMA**
+  * **Objetivo**: Encontrar defectos derivados del comportamiento del sistema como un todo.
+  * **Diseño**: Transición de estados (CN).
+  * **Implementación**: Java, Maven, Junit.
+* **ACEPTACIÓN**
+  * **Objetivo**: Valorar en qué GRADO se satisfacen las expectativas del cliente. Basadas en criterios de ACEPTACIÓN (prop. emergentes) cuantificables.
+  * **Diseño**:
+    * Basado en requerimientos (CN)
+    * Basado en escenarios (CN)
+    * Pruebas de rendimiento (CN)
+    * Pruebas α y β (CN)
+  * **Implementación**:
+    * Katalon recorder.
+    * Java, Maven, Junit, Webdriver.
+    * JMeter
+    * Usuario (α y β)
+
+### Planificación temporal de las pruebas
+
+Hay que tener claro en que momento se hace cada tipo de pruebas
+
+#### En modelos sequenciales...
+
+V-Model y W-Model
 
