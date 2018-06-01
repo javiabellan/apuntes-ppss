@@ -7,17 +7,24 @@ Planificar un proyecto...
 * ¿CUÁNDO hay que hacerlo?
 * ¿QUIÉN lo va a hacer?
 
-### Formas de planificación (Modelos)
+## Formas de planificación (Modelos)
 
 * **Predictiva**: Soporta muy mal los cambios
-  * **Modelo sequencial** (waterfall)
+  * **Modelo sequencial**: Planifican a nivel de **release**.
+    * Waterfall
+    * Modelo V
+    * Modelo W
 * **Adaptativa**:
-  * **Modelos iterativos**
-  * **Modelos ágiles**
+  * **Modelos iterativos**: Planifican a nivel de **release**, **iteración**.
+    * Modelo UP
+  * **Modelos ágiles**: (Más iterativos) Planifican a nivel de **release**, **iteración** y **día**.
+    * Modelo XP
+    * Modelo Scrum
 
+    
 > Planificar una iteración como una minicascada es un error. En las iteraciones se van haciendo requisitos.
 
-### Niveles de planificación (horizontes)
+## Niveles de planificación (horizontes)
 
 > Hay que mirar mas allá del horizonte, pero teniento en cuanta que la exactictitud de nuestro plan irá decreciendo.
 
@@ -28,13 +35,8 @@ Planificar un proyecto...
 5. **Portfolio**: Considera la selección de desarrollos dentro de la estrategia de la empresa.
 6. **Stratey**:
 
-* **Predictiva**:
-  * **Modelo sequencial**: Planifican a nivel de release.
-* **Adaptativa**:
-  * **Modelos iterativos**: Planifican a nivel de release, iteración.
-  * **Modelos ágiles (XP)**: Planifican a nivel de release, iteración y día.
 
-### Efectividad de las pruebas
+## Efectividad de las pruebas
 
 * ¿Cuántas pruebas? triángulo de recursos
 > #### Triángulo de recursos
@@ -44,7 +46,7 @@ Planificar un proyecto...
 * Fijar criterios
 
 
-### Recordar: El proceso de las pruebas
+## Recordar: El proceso de las pruebas
 
 > Objetivos:
 > * Demostrar que el software satisface los requerimientos.
@@ -63,7 +65,7 @@ Planificar un proyecto...
 5. **Actividades finales**
     * En este punto las pruebas ya han finalizado. Se trata de asegurar que los informes están disponibles, ... 
 
-### Recordar: Niveles de las pruebas
+## Recordar: Niveles de las pruebas
 
 * **UNIDAD**
   * **Objetivo**: Encontrar defectos en las unidades. Deben de probarse de forma AISLADA.
@@ -90,11 +92,65 @@ Planificar un proyecto...
     * JMeter
     * Usuario (α y β)
 
-### Planificación temporal de las pruebas
+## Planificación temporal de las pruebas
 
 Hay que tener claro en que momento se hace cada tipo de pruebas
 
 #### En modelos sequenciales...
 
-V-Model y W-Model
+## V-Model: `\/`
+* La `\`, es ???.
+* La `/`, es el diseño+implentación de cada nivel de pruebas.
 
+## W-Model: `\\//`
+* La primera \ es ???.
+* La "v central" se corresponde a las pruebas:
+  * La parte izquierda es el diseño (de cada nivel).
+  * La parte derecha la implementación (de cada nivel).
+* La última / es el debugging.
+
+
+Modelo	UP
+
+
+## Modelo	XP
+...
+
+## Scrum
+...
+
+## Test Driven Development (TDD)
+
+Es una práctica de pruebas utilizada en desarrollos ágiles, como por ejemplo XP.
+
+## Integración continua
+
+
+# Ejercicios
+
+##### 1. Indica si son ciertas o falsas las siguientes afiirmaciones:
+
+#### a) La práctica de integraciones continuas es un requisito de los modelos iterativos.
+
+No porque el modelo UP es iterativo y no te obliga a aplicar esa práctica.
+
+#### b) No podemos determinar el alcance de las pruebas sin implementar los tests.
+
+El alcance es lo primero que determinas. Defines el objetivo lo primero, y después diseñas acorde a ese objetivo. Otra cosa es que luego revises para ver hasta dónde has llegado, pero es falsa.
+
+#### c) El modelo en V determina la planifiicación temporal de las pruebas en modelos de proceso que utilizan una planifiicación predictiva.
+
+Un modelo secuencial es predictivo, por lo tanto, la afirmación es cierta. El modelo en V no se aplica a una planificación adaptativa. Los adaptativos son los iterativos y los ágiles. En un modelo secuencial tu predices lo que va a pasar desde el principio, en uno iterativo estás siendo adaptativo, no eres predictivo.
+
+---
+
+#### 2. Teniendo en cuenta TODAS y cada uno de los métodos y herramientas que hemos explicado en clase y/o usado en prácticas en esta segunda parte, construye un PLAN según el modelo W (puedes omitir las tareas relativas a las sesiones S1..S6).
+
+#### Cada tarea debe tener asociado un número que indique el orden cronológico en el plan, el objetivo CONCRETO de dicha tarea, y el método/herramienta utilizada para llevar a cabo cada tarea. Además, para cada una de las tareas del plan, tenéis que indicar cómo la hemos llevado a cabo en prácticas. Proporcionamos la siguiente tabla, que deberás rellenar, añadiendo las fiilas que consideres oportunas.
+
+| TAREAS  | Objetivo | Herramienta/método | En practicas... |
+|---------|----------|--------------------|-----------------|
+| Tarea 1 |          |                    |                 |
+| Tarea 2 |          |                    |                 |
+
+En una iteración tenemos certeza que no va a haber ningún cambio, por lo menos hasta el final de la iteración, pero durante la iteración no te molesta el cliente, te molesta en las pruebas de validación de fin de iteración. La iteración es una zona segura, y ahí puedo aplicar una V o W, pero sólo dentro de la iteración, no para todo el plan.
