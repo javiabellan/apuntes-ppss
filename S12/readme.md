@@ -110,14 +110,21 @@ Hay que tener claro en que momento se hace cada tipo de pruebas
 * La última / es el debugging.
 
 
-Modelo	UP
+## Modelo	UP
 
 
 ## Modelo	XP
 ...
 
 ## Scrum
-...
+
+![scrum](http://www.metodoagil.com/wp-content/uploads/2017/02/metodologia_scrum.gif?x78273)
+
+* **Product backlog**: Lista de requerimientos priorizados por su valor de negocio (los valores más altos al principio de la lista).
+* **Product owner**: Responsable de conseguir el máximo valor de negocio del producto.
+* **Scrum master**: Actúa como guía del grupo durante el proceso, "protege" al grupo del exterior, y sirve como ayuda al mismo. NO es un gestor de proyectos
+
+En un proceso Scrum NO hay una fase de testing "separada" del resto de actividades del desarrollo. Cuando un desarrollador termina una historia de usuario, los tests tienen que estar preparados para su ejecución. Si el test pasa, la historia es aceptada y se pasa a la siguiente. Una vez que se han probado todas las historias y han pasado los tests, se da por concluido el sprint y se pasa al siguiente
 
 ## Test Driven Development (TDD)
 
