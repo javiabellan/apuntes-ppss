@@ -92,17 +92,13 @@ Planificar un proyecto...
     * JMeter
     * Usuario (α y β)
 
-## Planificación temporal de las pruebas
+## Modelos sequenciales
 
-Hay que tener claro en que momento se hace cada tipo de pruebas
-
-#### En modelos sequenciales...
-
-## V-Model: `\/`
+### V-Model: `\/`
 * La `\`, es ???.
 * La `/`, es el diseño+implentación de cada nivel de pruebas.
 
-## W-Model: `\\//`
+### W-Model: `\\//`
 * La primera \ es ???.
 * La "v central" se corresponde a las pruebas:
   * La parte izquierda es el diseño (de cada nivel).
@@ -110,28 +106,74 @@ Hay que tener claro en que momento se hace cada tipo de pruebas
 * La última / es el debugging.
 
 
-## Modelo	UP
+## Modelos iterativos
 
-
-## Modelo	XP
+### Modelo	UP
 ...
 
-## Scrum
+### Scrum
 
 ![scrum](http://www.metodoagil.com/wp-content/uploads/2017/02/metodologia_scrum.gif?x78273)
 
-* **Product backlog**: Lista de requerimientos priorizados por su valor de negocio (los valores más altos al principio de la lista).
+* **Sprint**: 3-4 semanas.
+* **Product backlog**: Lista de requerimientos priorizados por su valor de negocio (los valores más altos al principio).
 * **Product owner**: Responsable de conseguir el máximo valor de negocio del producto.
 * **Scrum master**: Actúa como guía del grupo durante el proceso, "protege" al grupo del exterior, y sirve como ayuda al mismo. NO es un gestor de proyectos
 
-En un proceso Scrum NO hay una fase de testing "separada" del resto de actividades del desarrollo. Cuando un desarrollador termina una historia de usuario, los tests tienen que estar preparados para su ejecución. Si el test pasa, la historia es aceptada y se pasa a la siguiente. Una vez que se han probado todas las historias y han pasado los tests, se da por concluido el sprint y se pasa al siguiente
+En un proceso Scrum NO hay una fase de testing "separada" del resto de actividades del desarrollo. Cuando un desarrollador termina una historia de usuario, los tests tienen que estar preparados para su ejecución. Si el test pasa, la historia es aceptada y se pasa a la siguiente. Una vez que se han probado todas las historias y han pasado los tests, se da por concluido el sprint y se pasa al siguiente.
+
+### Modelo	XP
+
+* **Story cards** (historias de usuario): Representan características requeridas por el usuario (luego se dividirá en tareas
+concretas para ser desarrolladas). Criterios de aceptación al reverso.
+
+> *As an [actor] I want [action] so that [achievement].*
+
+* **Task list** o **Iteration plan board**: Story cards de una iteración. (Se priorizan según su valor).
+* **Iteración**: ≃1 semana.
+* **Release plan board**: Lista de historias de usuario priorizadas para cada iteración.
+
 
 ## Test Driven Development (TDD)
 
-Es una práctica de pruebas utilizada en desarrollos ágiles, como por ejemplo XP.
+Es una práctica donde primero se escriben los tests y luego el software. (Utilizado en desarrollos ágiles).
+
+1.	Escribir	una	prueba	para	el	nuevo	código	y	ver	cómo	falla.	
+2.	Implementar	el	nuevo	código,	haciendo	"la	solución	más	simple	que	pueda	funcionar".
+3.	Comprobar	que	la	prueba	es	exitosa	y	refactorizar	el	código.
+
+* **Aproximación "clásica"**: Utilizar objetos reales siempre que sea posible, y stubs (u otro “doble”) si es complicado.
+  * Estilo de diseño **INSIDE-OUT**: comenzamos por los componentes de bajo nivel. No necesitamos stubs.
+* **Aproximación "mockist"**: Utilizar siempre un mock para cualquier objeto con un comportamiento interesante.
+  * Estilo de diseño **OUTSIDE-IN**: comenzamos por los componentes de alto nivel. Mocks para sustituir los componentes de
+bajo nivel.
+  * Como consecuencia de esta aproximación surge **BDD** (Behaviour Driven Development).
+
+## Behaviour Driven Development (BDD)
+
+Es muy importante entender por qué estamos llevando a cabo un proyecto.
+
+Cualquier sistema software proporciona un VALOR de NEGOCIO.
+BDD nos permite centrarnos en el valor de negocio de nuestra aplicación.
+
+> Si preguntamos a los usuarios "qué quieren", generalmente obtendremos por respuesta un conjunto de requerimientos detallados sobre cómo imaginan la solución. Es decir, los usuarios no nos dicen lo que necesitan, diseñan una solución por
+nosotros.
+>
+> Debemos centrarnos en las "features" (funcionalidades) que proporcionan un valor de negocio para el usuario. Es decir, funcionalidades que nos ayudan a conseguir los OBJETIVOS del proyecto.
+
+Ejemplos de objetivos:
+* Incrementar en un 10% el número de clientes.
+* Incrementar las ventas en un 5%.
 
 ## Integración continua
 
+Consisten en integrar el código del proyecto de forma ininterrumpida (en ciclos cortos) en una máquina que debe estar funcionando 24/7.
+
+Nace con el proceso de desarrollo XP
+
+Las integraciones continuas realizan **construcciones planificadas** del sistema. Cada hora or ejemplo.
+
+Funcionamiento: Falta...
 
 # Ejercicios
 
