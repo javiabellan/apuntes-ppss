@@ -16,14 +16,14 @@ Encontrar defectos de la **interacción** entre las unidades.
 * **Memoria compartida**: Un componente escribe en memoria y otro lee.
 Ej sensores y sist. embebidos.
 * **Interfaces procedurales**: Un componente (clase) encapsula un cjto. de procedimientos (métodos) que
-pueden llamarse desde otras clases.**
+pueden llamarse desde otras clases.
 * **Paso de mensajes**: Solicitar información y devolver contenido. Ej: cliente-servidor.
 
 ### Consejos.
 * Probar los extremos de los rangos de los params.
-* Si se pasan punteros, probar punetros nulos.
+* Si se pasan punteros, probar punteros nulos.
 * Probar que falle.
-* Pruebas de estrés en paso por mensajes. Medir tiempos..
+* Pruebas de estrés en paso por mensajes. Medir tiempos...
 * Tests de memoria compartida que sigan el orden que se haría en el programa.
 
 ### Estrategias
@@ -79,9 +79,9 @@ Métodos tipicos de esta clase factoría son:
 
 
 #### Código de pruebas
-1. BBDD limpia antes de cada test (no después)
-2. Cargar datos a la BBDD
-3. Usar DbUnit para aserciones
+1. Restaurar BBDD **antes de cada test** (no después).
+2. Cargar datos de pruebas a la BBDD.
+3. Usar DbUnit para aserciones.
 
 `dataset-init.xml`: Fichero que se usa para cargar inicialmente un dataset vacío
 ```xml
@@ -176,8 +176,7 @@ public void testInsert() throws Exception
 
 
 
-## Ciclo de vida
-
+## Ciclo de vida (Maven)
 
 | Fase                   | Goal por defecto        |
 |------------------------|-------------------------|
@@ -187,11 +186,14 @@ public void testInsert() throws Exception
 | test                   | surefire:test           |
 | package                | jar:jar                 |
 
-| Fase                 | Goal a añadir en el POM   |
-|----------------------|---------------------------|
-| pre-integration-test | sql:execute               |
-| integration-test     | failsafe:integration-test |
-| verify               | failsafe:verify           |
+Luego vienen las fases dde integración, Maven contempla cuatro. **Estas fases no tienen goals por defecto**.
+
+| Fase                  | Descripción                                                   | Goal a añadir en el POM   |
+|-----------------------|---------------------------------------------------------------|---------------------------|
+| pre-integration-test  | Iniciar algún servicio (BBDD, serv, web)                      | sql:execute               |
+| integration-test      | Ejecuta los `@Test` de `IT*.java`, `*IT.java`, `*ITCase.java` | failsafe:integration-test |
+| post-integration-test | Detener servicios (restaurar)                                 |                           |
+| verify                | Comprobar que todo está listo                                 | failsafe:verify           |
 
 
 Las goal se añaden en los plugins del POM:
