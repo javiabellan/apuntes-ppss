@@ -65,6 +65,24 @@ Basado en JUnit. Controla la dep. ext. de la BBDD. Dependencias en el POM:
 
 ### Escenario típico
 
+```
+project
+	src
+		java
+			ppss
+				Customer.java
+				CustomerFactory.java
+	test
+		java
+			ppss
+				CustomerTest.java
+		resources
+			sql
+				createTableCustomer.sql
+			customer_init.xml
+			customer_expected.xml
+```
+
 #### Código fuente
 La idea típica es hacer una clase java que simule una tabla (cada instancia una fila de la tabla).
 Esta clase es simplemte para guardar los datos como atributos, así que solo necesita getters y setters.
@@ -186,11 +204,11 @@ public void testInsert() throws Exception
 | test                   | surefire:test           |
 | package                | jar:jar                 |
 
-Luego vienen las fases dde integración, Maven contempla cuatro. **Estas fases no tienen goals por defecto**.
+Luego vienen las fases de integración, Maven contempla cuatro. **Estas fases no tienen goals por defecto**.
 
 | Fase                  | Descripción                                                   | Goal a añadir en el POM   |
 |-----------------------|---------------------------------------------------------------|---------------------------|
-| pre-integration-test  | Iniciar algún servicio (BBDD, serv, web)                      | sql:execute               |
+| pre-integration-test  | Iniciar algún servicio (BBDD, servidor web)                      | sql:execute               |
 | integration-test      | Ejecuta los `@Test` de `IT*.java`, `*IT.java`, `*ITCase.java` | failsafe:integration-test |
 | post-integration-test | Detener servicios (restaurar)                                 |                           |
 | verify                | Comprobar que todo está listo                                 | failsafe:verify           |
