@@ -7,8 +7,10 @@ Lo malo de **Katalon** es que no soporta:
 * Gestión de errores
 * Tests en la costrucción de proyecto
 
-Por ello se puede usar **WebDriver** que usa **java** (entre otros)
-para programar los tests de **pruebas emergentes funcionales**
+## Selenium WebDriver
+
+Por ello se puede usar **Selenium WebDriver** que usa **java** (entre otros)
+para programar los tests de **pruebas emergentes funcionales** (basadas en escenarios normalmente)
 sobre **aplicaciones web** en diferentes navegadores.
 
 WebDriver usa un driver concreto según el navegador que estemos usando
@@ -187,6 +189,13 @@ public class LoginPage
 Tests en `src/test/java`
 
 ```java
+import org.junit.Test;
+import org.junit.Assert;
+import org.junit.Before;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.PageFactory;
+
 public class TestLoginPage
 {
 	WebDriver driver;
@@ -253,6 +262,13 @@ public class LoginPage
 Test:
 
 ```java
+import org.junit.Test;
+import org.junit.Assert;
+import org.junit.Before;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.PageFactory;
+
 public class TestLoginPage
 {
 	WebDriver driver;
