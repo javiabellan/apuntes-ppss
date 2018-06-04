@@ -77,15 +77,13 @@ Otras acciones comunes a todos los WenElements son:
 Si no esperamos un ratico a que se carge la página, es probable que no se cargue lo que buscamos
 (y se lanze un `NoSuchElementException`)
 
-**Wait implicito**: Esperar siempre un tiempo prestablecido para todas las operaciones del driver.
+**Wait implicito**: Esperar un tiempo prestablecido.
 
 ```java
 driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 ```
 
-También puedes usar un **wait explícito**,
-en cuyo caso afectará al elemento al que asociemos el temporizador.
-El `until` espera hasta que aparezca un WebElement concreto:
+**Wait explícito**, Objeto `WebDriverWait`, con `until()` espera hasta que algoen concreto ocurra o aparezca.
 
 ```java
 WebDriverWait wait = new WebDriverWait(driver, 10);
