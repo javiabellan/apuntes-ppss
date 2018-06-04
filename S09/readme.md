@@ -59,38 +59,18 @@ Otras acciones comunes a todos los WenElements son:
 * `isEnabled()`
 * `isSelected()`
 
-### Ejemplo de un test
-
-```java
-@Test
-public void signIn()
-{
-  WebDriver driver = new FirefoxDriver();
-  driver.get("https://accounts.google.com");
-  driver.manage().window().maximize();
-
-  String expectedTitle = "Inicio de sesión - Cuentas de Google";
-  String actualTitle   = driver.getTitle();
-  Assert.assertEquals("Url incorrecta", expectedTitle, actualTitle);
-
-  WebElement username = driver.findElement(By.id("Email"));
-  username.clear();
-  username.sendKeys("TestSelenium"); //tecleamos el usuario
-
-  WebElement password = driver.findElement(By.id("Passwd"));
-  password.clear();
-  password.sendKeys("password123"); //tecleamos el password
-
-  WebElement SignInButton = driver.findElement(By.id("signIn"));
-  SignInButton.click();
-  
-  expectedTitle = "Inicio de sesión - Cuentas de Google";
-  actualTitle   = driver.getTitle();
-  Assert.assertEquals("Sign In Fallido", expectedTitle, actualTitle);
-
-  driver.close(); //cerramos el navegador
-}
-```
+> #### Acciones compuestas
+>
+> ```java
+> Actions actions = new Actions(driver);
+> actions.keyDown(Keys.CONTROL)
+> 	.click(element1)
+> 	.click(element2)
+> 	.click(element3)
+> 	.keyUp(Keys.CONTROL)
+> 	.build()    // Build the composite action.
+> 	.perform(); // Perform the composite action.
+> ```
 
 ### Esperar
 
@@ -114,6 +94,37 @@ wait.until(ExpectedConditions.alertIsPresent());          // Option b) Wait unti
 ```
 
 > RECUERDA: Los waits van en el src, no en los tests
+
+### Ejemplo de un test
+
+```java
+@Test
+public void signIn()
+{
+  WebDriver driver = new FirefoxDriver();    // 1) WebDriver
+  driver.get("https://accounts.google.com"); // 2) Obtener pág
+
+  Assert.assertEquals("Inicio de sesión", driver.getTitle()); // Un primer assert
+
+  WebElement username = driver.findElement(By.id("Email"));  // WebElement login
+  username.clear();
+  username.sendKeys("TestSelenium"); //tecleamos el usuario
+
+  WebElement password = driver.findElement(By.id("Passwd")); // WebElement pass
+  password.clear();
+  password.sendKeys("password123"); //tecleamos el password
+
+  WebElement SignInButton = driver.findElement(By.id("signIn")); // WebElement button
+  SignInButton.click();
+  
+  driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); // Una pausilla
+  
+  Assert.assertEquals("Bienvenido", driver.getTitle()); // Otro assert
+
+  driver.close();                                       // Cerrar el navegador
+}
+```
+
 
 ### POM
 
