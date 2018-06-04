@@ -20,7 +20,9 @@ Las pruebas de acep. deben basarse en la especificación y no en la implementaci
 
 ### Propiedades emergentes
 
-Prueban las propiedades emergentes: Emergen al final cuando está ya todo integrado
+Prueban las propiedades emergentes: Emergen al final cuando está ya todo integrado.
+
+Cualquier atributo incluido en los criterios de aceptación es una propiedad emergente.
 
 * **Funcionales**: Propósito del sistema
   * Basado en **requerimientos**: Validación de que el sistema cumple los requerimeintos
@@ -46,7 +48,7 @@ Y además de probar los requerimientos individuales, prueban la combinación de 
 
 # Katalon (Selenium)
 
-Katalon Automation Recorder (KAR) es una herramienta para automatizar **pruebas funcionales** sobre aplicaciones Web.
+Katalon Automation Recorder (KAR) es una herramienta para automatizar **pruebas funcionales** (normalmente basadas en escenarios) sobre aplicaciones Web.
 
 Permite grabar "scripts" de pruebas como si fuese un usuario en el navegador. Y luego se ejecutan
 
