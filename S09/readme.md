@@ -327,3 +327,19 @@ Pero los tests de Selenium WebDriver si se podrían integrar pero en el laborato
 #### c) Supón que accedemos a un sitio web (http://books_like.es/comics), que nos muestra la  sección de cómics, estamos interesados en leer el último número del comic de “Conan”. En esa página podemos leer cómics on-line, y además podemos ver el número de opiniones “me gusta” y “no me gusta” realizados de forma anónima por los usuarios que han leído el cómic. Cada vez que un usuario “pincha” sobre el icono “me gusta” o “no me gusta” (solamente puede activarse uno cada vez) se incrementa en uno el contador correspondiente..
 
 ##### Implementa con Webdriver (usando el patrón Page Object) un test en el que accedemos a http://books_like.es/comics, selecionamos el comic “Conan” y luego pulsamos sobre “Me gusta” (no es necesario que implementes los métodos de las page object, pero tienes que indicar para dichas clases, los atributos y las signaturas de los métodos que contienen).
+
+![1](1.png)
+
+```java
+public class ComicsPage
+{
+}
+```
+
+![2](2.png)
+
+```java
+public class ComicPage
+{
+}
+```
