@@ -72,6 +72,10 @@ Probar dichos datos (ejecutar las pruebas) midiendo el **número de fallos** y e
 Apache JMeter es una herramienta diseñada para medir el rendimiento **mediante pruebas de carga**.
 (Permite trabajar con muchos tipos de aplicaciones).
 
+```
+$ jmeter
+```
+
 Un **plan de pruebas** JMeter está formado por por:
 * Uno o más **grupos de hilos** (Thread Groups) que a su vez tiene:
   * Samplers (muestreadores) envían peticiones a un servidor. ![logo](http
@@ -102,15 +106,40 @@ Y Se ejecutan en este orden:
 6. AsserRons (unless SampleResult is null)
 7. Listeners (unless SampleResult is null)
 
+### Servidor proxy
+
+> #### Servidor proxy
+> Intermediario (B) en las peticiones de recursos que realiza un cliente (A) a un servidor (C).
+
+JMeter tendría dificultad cuando hay formularios complejos, peticiones http POST, peticiones javascript,... porque los parámetros NO son visibles en la URL.
+
+Por eso, JMeter proporciona un servidor HTTP proxy, a través del cual podemos utilizar el navegador para realizar las pruebas, y JMeter "grabará" las peticiones http generadas, (creando los correspondientes HTTP samplers).
+
+Es un elemento del **banco de trabajo** (no del plan de test) que se selecciona con `Añadir → ElementosNoDePrueba → Servidor Proxy HTTP`. Y le asignamos un puerto que esté libre como por ejemplo `8888`.
+
+Dado que JMeter "grabará" todas las acciones que realicemos en el navegador en un controlador de tipo "recording", tendremos que incluir un controlador de este tipo en nuestro plan de pruebas. Lo primero que haremos será añadir un grupo de hilos en nuestro plan. Desde el menú contextual del nodo "Plan de Pruebas", elegiremos `Añadir→Hilos→Grupo de hilos`. A continuación, desde el menú contextual del grupo de hilos que acabamos de añadir tendremos que elegir `Añadir→Controlador lógico→Controlador Grabación`.
+
+
 # Ejercicios
 
 #### Contesta a las siguientes cuestiones sobre el servidor proxy http en JMeter:
 
 ##### a) ¿Para qué se utiliza?
 
+Para hacer de intermediario entre las peticiones HTTP que "grabamos" y enviarselas al servidor. De esta forma JMeter puede ver parametros ocultos de algunas peticiones como POSTs, formularios, etc.
+
 ##### b) Cita un caso concreto de su uso en la práctica del laboratorio.
 
-##### c) Indica los pasos a seguir para utilizarlo (sin incluir parámetros concretos de con>iguración)
+##### c) Indica los pasos a seguir para utilizarlo (sin incluir parámetros concretos de configuración)
 
+Es un elemento del **banco de trabajo** (no del plan de test) que se selecciona con `Añadir → ElementosNoDePrueba → Servidor Proxy HTTP`. Y le asignamos un puerto que esté libre como por ejemplo `8888`.
 
-#### Dado el siguiente plan JMeter y la con>iguración del grupo de hilos, indica la secuencia ordenada de las peticiones http que se ejecutan:
+Por defecto, el servidor proxy interceptará todas las peticiones http dirigidas a nuestra aplicación y las "grabará" en un controlador de tipo recording (ver el valor del campo Contenido del plan de pruebas→Controlador objetivo, de la conSiguración del Servidor Proxy HTTP).
+
+Dado que JMeter "grabará" todas las acciones que realicemos en el navegador en un controlador de tipo "recording", tendremos que incluir un controlador de este tipo en nuestro plan de pruebas.
+
+#### Dado el siguiente plan JMeter y la configuración del grupo de hilos, indica la secuencia ordenada de las peticiones http que se ejecutan:
+
+![img1](plan.png)
+
+![img2](hilos.png)
