@@ -333,6 +333,19 @@ Pero los tests de Selenium WebDriver si se podrían integrar pero en el laborato
 ```java
 public class ComicsPage
 {
+	WebDriver driver;
+	@FindBy(name="conan") WebElement conanBtn;
+
+	public ComicsPage(WebDriver d)
+	{
+		driver = d;
+		driver.get("http://books_like.es/comics");
+	}
+
+	public ComicPage clickComic(String nameComic)
+	{
+		...
+	}
 }
 ```
 
@@ -341,5 +354,51 @@ public class ComicsPage
 ```java
 public class ComicPage
 {
+	WebDriver driver;
+	@FindBy(name="meGusta") WebElement meGustaBtn;
+	@FindBy(name="noMeGusta") WebElement noMeGustaBtn;
+
+	public ComicPage(WebDriver d)
+	{
+		driver = d;
+	}
+
+	public void clickMeGusta()
+	{
+		...
+	}
+
+	public void clickNoMeGusta()
+	{
+		...
+	}
+}
+```
+
+```java
+public class TestComicsPage
+{
+	WebDriver driver;
+	ComicsPage poComics; // principal page
+	ComicPage poComic;   // comic page (Conan)
+
+	@Before
+	public void setup()
+	{
+		driver   = new FireFoxDriver();
+
+		// Accedemos a http://books_like.es/comics
+		poComics = PageFactory.initElements(driver, poComics.class);
+	}
+
+	@Test
+	public void testProposed()
+	{
+		// Selecionamos el comic "Conan"
+		poComic = poComics.clickComic("Conan");
+		
+		// Pulsamos sobre "Me gusta"
+		poComic.clickMeGusta();
+	}
 }
 ```
