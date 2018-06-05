@@ -93,8 +93,9 @@ Un **plan de pruebas** JMeter está formado por por:
   * Pre-Processors y Post-Processors
 
 > En el grupo de hilos se especifica:
-> * Cuántos hilos (usurarios) actuarán en paralelo.
-> * Y el periodo de subida (RAMP-UP) es tiempo que tarda en crearse los hilos (50 hilos y 100s -> un hilo cada 2s).
+> * **Número de hilos**: Cuántos hilos (usurarios) actuarán en paralelo.
+> * **Periodo de subida** (RAMP-UP): Tiempo que tarda en crearse los hilos (50 hilos y 100s -> un hilo cada 2s).
+> * **Contador del bucle**: Número de veces que cada hilo ejecutará la prueba (iteraciones).
 
 Y Se ejecutan en este orden:
 
@@ -140,6 +141,21 @@ Dado que JMeter "grabará" todas las acciones que realicemos en el navegador en 
 
 #### Dado el siguiente plan JMeter y la configuración del grupo de hilos, indica la secuencia ordenada de las peticiones http que se ejecutan:
 
-![img1](plan.png)
+![hilos](hilos.png)
 
-![img2](hilos.png)
+![plan](plan.png)
+
+Aquí tenemos 1 hilo, con 4 iteraciones por hilo. Luego la sequencia de peticiones http es la siguiente:
+
+| Iteración | Petición HTTP |
+|-----------|---------------|
+| 1         | News Page     |
+| 1         | Log Page      |
+| 2         | FAQ Page      |
+| 2         | Log PAge      |
+| 3         | Gump Page     |
+| 3         | Log Page      |
+| 4         | News Page     |
+| 4         | Log Page      |
+
+En la 4a iteración el interleave controller lo que hace es volver a empezar la sequencia otra vez por el principio.
