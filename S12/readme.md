@@ -82,6 +82,8 @@ Planificar un proyecto...
 
 ## Modelos sequenciales
 
+En modelos iterativos, las pruebas se dejan al **final** (Véase según el modelo).
+
 ### V-Model: `\/`
 * La `\`, es ???.
 * La `/`, es el diseño+implentación de cada nivel de pruebas.
@@ -119,8 +121,14 @@ Especificación    DisTestAcep               ImplTestAcep   Debug
 
 ## Modelos iterativos
 
+En modelos iterativos, las pruebas se planifican a nivel de **iteración** y **release**.
+
 ### Modelo	UP
-...
+
+Se hacen las pruebas al final de cada iteración. En las primeras iters. las pruebas serán pequeñitas
+y en las últimas iters. las pruebas serán más relevantes.
+
+![up](https://www.inflectra.com/GraphicsViewer.aspx?url=Methodologies/agile-development.xml&name=wordml://03000006.png)
 
 ### Scrum
 
