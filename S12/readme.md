@@ -82,7 +82,7 @@ Planificar un proyecto...
 
 ## Pruebas en modelos sequenciales
 
-En modelos iterativos, las pruebas se dejan al **final** (Véase según el modelo).
+En modelos iterativos, las pruebas se dejan al **final** (Véase según el modelo). Y luego se hace la integración (deploy) final.
 
 ### V-Model: `\/`
 * La `\`, es ???.
@@ -121,7 +121,7 @@ Especificación    DisTestAcep               ImplTestAcep   Debug
 
 ## Pruebas en modelos iterativos
 
-En modelos iterativos, las pruebas se planifican a nivel de **iteración** y **release**.
+En modelos iterativos, las pruebas se planifican a nivel de **iteración** y **release**. Y se van haciendo varias integraciones (deploy) al final de cada iteración.
 
 ### Modelo	UP
 
@@ -138,12 +138,12 @@ y en las últimas iters. las pruebas serán más relevantes.
 
 ### Modelo	XP
 
-Primero se hacen las **historias de usuario** (**Story cards**) que son las características que el usuario pide. Estas putas tarjetitas, para comprobar que se cumplen llevan por detrás los **criterios de aceptación**.
+Primero se hacen las **historias de usuario** (**Story cards**) que son las características que el usuario pide. Estas tarjetitas, llevan por detrás los **criterios de aceptación** para comprobar que se cumplen.
 
 > Ejemplo de historia de usuario:
 > *As an [actor] I want [action] so that [achievement].*
 
-Una vez tenemos todas las historias de usuario, éstas, a su vez se dividen en **tareas** concretas (**tasks**) y son desarrolladas por los programadores. **Por detrás, cada tasks tiene asociado un conjunto de tests**.
+Una vez tenemos todas las historias de usuario, éstas, a su vez se dividen en **tareas** concretas (**tasks**) y son desarrolladas por los programadores. **Por detrás, cada tasks tiene asociado un conjunto de tests**. **Esto también lo hace Scrum**. Cuando pasa los tests (criterio de aceptación) se marca como DONE.
 
 > Extra:
 > * Las historias de usuario se van poniendo en el **Release plan board** para ver que historias se harán en cada release (priorizando).
@@ -158,11 +158,8 @@ Es una práctica donde primero se escriben los tests y luego el software. (Utili
 2.	Implementar	el	nuevo	código,	haciendo	"la	solución	más	simple	que	pueda	funcionar".
 3.	Comprobar	que	la	prueba	es	exitosa	y	refactorizar	el	código.
 
-* **Aproximación "clásica"**: Utilizar objetos reales siempre que sea posible, y stubs (u otro “doble”) si es complicado.
-  * Estilo de diseño **INSIDE-OUT**: comenzamos por los componentes de bajo nivel. No necesitamos stubs.
-* **Aproximación "mockist"**: Utilizar siempre un mock para cualquier objeto con un comportamiento interesante.
-  * Estilo de diseño **OUTSIDE-IN**: comenzamos por los componentes de alto nivel. Mocks para sustituir los componentes de
-bajo nivel.
+* **Aproximación "clásica"** (estilo de diseño **INSIDE-OUT**): Comenzar por los componentes de bajo nivel. No necesitamos stubs. Utilizar objetos reales siempre que sea posible, y stubs (u otro “doble”) si es complicado.
+* **Aproximación "mockist"** (estilo de diseño **OUTSIDE-IN**): Comenzar por los componentes de alto nivel. Y usar mocks para sustituir los componentes de bajo nivel.
   * Como consecuencia de esta aproximación surge **BDD** (Behaviour Driven Development).
 
 ## Behaviour Driven Development (BDD)
@@ -182,6 +179,8 @@ Ejemplos de objetivos:
 * Incrementar las ventas en un 5%.
 
 ## Integración continua
+
+**Nace con el proceso de desarrollo XP**.
 
 Consisten en integrar el código del proyecto de forma ininterrumpida (en ciclos cortos) en una máquina que debe estar funcionando 24/7.
 
