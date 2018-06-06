@@ -89,9 +89,9 @@ En modelos iterativos, las pruebas se dejan al **final** (Véase según el model
 * La `/`, es el diseño+implentación de cada nivel de pruebas.
 
 ```
-ACEPTACIÓN     Especificación                  Tests aceptación
+ACEPTACIÓN     Requerimientos                  Tests aceptación
 ----------------------\-----------------------------/---------------
-SISTEMA           Requerimientos             Tests sistema
+SISTEMA           Especificación             Tests sistema
 ------------------------\-------------------------/-----------------
 INTEGRACIÓN          Diseñ. Arqu.          Tests integración
 --------------------------\---------------------/-------------------
@@ -108,9 +108,9 @@ UNIDADES                Diseñ detall     Tests unitarios
 * La última / es el debugging.
 
 ```
-Especificación    DisTestAcep               ImplTestAcep   Debug
+Requerimientos    DisTestAcep               ImplTestAcep   Debug
 --------\---------------\-----------------------/-----------/------
-   Requerimientos    DisTestSist          ImplTestSist   Debug
+   Especificación    DisTestSist          ImplTestSist   Debug
 ----------\---------------\-------------------/-----------/--------
       Diseñ Arquit     DisTestInte      ImplTestInte   Debug
 ------------\---------------\---------------/-----------/----------
@@ -216,5 +216,18 @@ Un modelo secuencial es predictivo, por lo tanto, la afirmación es cierta. El m
 |---------|----------|--------------------|-----------------|
 | Tarea 1 |          |                    |                 |
 | Tarea 2 |          |                    |                 |
+
+|      TAREAS       | Objetivo: Encontrar defect en: | Herramienta/método | En practicas... |
+|-------------------|--------------------------------|--------------------|-----------------|
+| Dis. Tests Acep.  | satisfacer  expec. del cliente |                    |                 |
+| Dis. Tests Sist.  | el comportamiento del sistema  |                    |                 |
+| Dis. Tests Inte.  | la interacción de las unidades |                    |                 |
+| Dis. Tests Unit.  | las unidades de forma aislada  | Part. equivalentes |                 |
+| CODING            |                                |                    |                 |
+| Impl. Tests Unit. | las unidades de forma aislada  | Camino básico      | Java, Maven, JUnit, EasyMock |
+| Impl. Tests Inte. | la interacción de las unidades | Interfaces y BBDD  | Java, Maven, JUnit, DbUnit  |
+| Impl. Tests Sist. | el comportamiento del sistema  | Trans. de estados  | Java, Maven, JUnit          |
+| Impl. Tests Acep. | satisfacer  expec. del cliente | req, esce y rendim | Katalon, Webdriver, JMeter  |
+
 
 En una iteración tenemos certeza que no va a haber ningún cambio, por lo menos hasta el final de la iteración, pero durante la iteración no te molesta el cliente, te molesta en las pruebas de validación de fin de iteración. La iteración es una zona segura, y ahí puedo aplicar una V o W, pero sólo dentro de la iteración, no para todo el plan.
