@@ -15,9 +15,9 @@ Planificar un proyecto...
     * Modelo V
     * Modelo W
 * **Adaptativa**:
-  * **Modelos iterativos**: Planifican a nivel de **release**, **iteración**.
+  * **Modelos iterativos**: Planifican a nivel de **iteración**, **release**.
     * Modelo UP
-  * **Modelos ágiles**: (Más iterativos) Planifican a nivel de **release**, **iteración** y **día**.
+  * **Modelos ágiles**: (Más iterativos) Planifican a nivel de **día**, **iteración** y **release**.
     * Modelo XP
     * Modelo Scrum
 
@@ -28,19 +28,23 @@ Planificar un proyecto...
 
 > Hay que mirar mas allá del horizonte, pero teniento en cuanta que la exactictitud de nuestro plan irá decreciendo.
 
-1. **Día**:
-2. **Iteración**:
-3. **Release**: Considera las historias de usuario que serán desarrolladas en la SIGUIENTE entrega.
-4. **Product**: Considera la evolución de posteriores "releases".
-5. **Portfolio**: Considera la selección de desarrollos dentro de la estrategia de la empresa.
-6. **Stratey**:
+1. **Día**
+2. **Iteración**
+3. **Release**: Planifica la siguiente entrega (las historias de usuario).
+4. **Producto**
+5. **Portfolio**
+6. **Stratey**
 
 
 ## Efectividad de las pruebas
 
 * ¿Cuántas pruebas? triángulo de recursos
-> #### Triángulo de recursos
-> El desarrollo del software debe equilibrar los tres vértices del triángulo: **tiempo**, **dinero** y **funcionalidad**.
+> #### Triángulo de recursos. Equilibrar:
+> ```
+> funcionalidad
+>   /      \
+> dinero-tiempo
+> ```
 
 * Priorizar: decidir qué tests son más importantes.
 * Fijar criterios
