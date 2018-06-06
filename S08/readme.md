@@ -26,8 +26,9 @@ Cualquier atributo incluido en los criterios de aceptación es una propiedad eme
 
 * **Funcionales**: Propósito del sistema
   * Basado en **requerimientos**: Validación de que el sistema cumple los requerimeintos
-  * Basado en **escenarios**: Como se debería usar el sistema
+  * Basado en **escenarios**: Como se debería usar el sistema. (Katalon y Selenium WebDriver)
 * **No funcionales**: Comportamineto (-idad)
+  * **Pruebas de rendimiento**: (JMeter)
 
 #### Requerimiento
 Ejemplo:
@@ -45,6 +46,8 @@ Pruebas que se harían:
 Las pruebas basadas en escenarios normalmente prueban varios requerimientos en un mismo escenario.
 
 Y además de probar los requerimientos individuales, prueban la combinación de ellos.
+
+---
 
 # Katalon (Selenium)
 
