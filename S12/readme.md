@@ -80,7 +80,7 @@ Planificar un proyecto...
 
 
 
-## Modelos sequenciales
+## Pruebas en modelos sequenciales
 
 En modelos iterativos, las pruebas se dejan al **final** (Véase según el modelo).
 
@@ -119,7 +119,7 @@ Especificación    DisTestAcep               ImplTestAcep   Debug
             Escribir código fuente    Cambiar código fuente
 ```
 
-## Modelos iterativos
+## Pruebas en modelos iterativos
 
 En modelos iterativos, las pruebas se planifican a nivel de **iteración** y **release**.
 
@@ -134,24 +134,21 @@ y en las últimas iters. las pruebas serán más relevantes.
 
 ![scrum](http://www.metodoagil.com/wp-content/uploads/2017/02/metodologia_scrum.gif?x78273)
 
-* **Sprint**: 3-4 semanas.
-* **Product backlog**: Lista de requerimientos priorizados por su valor de negocio (los valores más altos al principio).
-* **Product owner**: Responsable de conseguir el máximo valor de negocio del producto.
-* **Scrum master**: Actúa como guía del grupo durante el proceso, "protege" al grupo del exterior, y sirve como ayuda al mismo. NO es un gestor de proyectos
-
-En un proceso Scrum NO hay una fase de testing "separada" del resto de actividades del desarrollo. Cuando un desarrollador termina una historia de usuario, los tests tienen que estar preparados para su ejecución. Si el test pasa, la historia es aceptada y se pasa a la siguiente. Una vez que se han probado todas las historias y han pasado los tests, se da por concluido el sprint y se pasa al siguiente.
+**No** hay una fase de testing "separada" del resto de actividades. Cuando un desarrollador termina una historia de usuario, hace los tests. Si el test pasa, la historia es aceptada y pasa a la siguiente.
 
 ### Modelo	XP
 
-* **Story cards** (historias de usuario): Representan características requeridas por el usuario (luego se dividirá en tareas
-concretas para ser desarrolladas). Criterios de aceptación al reverso.
+Primero se hacen las **historias de usuario** (**Story cards**) que son las características que el usuario pide. Estas putas tarjetitas, para comprobar que se cumplen llevan por detrás los **criterios de aceptación**.
 
+> Ejemplo de historia de usuario:
 > *As an [actor] I want [action] so that [achievement].*
 
-* **Task list** o **Iteration plan board**: Story cards de una iteración. (Se priorizan según su valor).
-* **Iteración**: ≃1 semana.
-* **Release plan board**: Lista de historias de usuario priorizadas para cada iteración.
+Una vez tenemos todas las historias de usuario, éstas, a su vez se dividen en **tareas** concretas (**tasks**) y son desarrolladas por los programadores. **Por detrás, cada tasks tiene asociado un conjunto de tests**.
 
+> Extra:
+> * Las historias de usuario se van poniendo en el **Release plan board** para ver que historias se harán en cada release (priorizando).
+> * Luego en el **Iteration plan board** vemos como se dividen las historias de usuario en tareas concretas.
+> * Y en el **Task board** se van poniendo las tasks por hacer, que no es muy distinto de lo que hace Scrum.
 
 ## Test Driven Development (TDD)
 
