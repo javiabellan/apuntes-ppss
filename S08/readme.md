@@ -69,6 +69,7 @@ Esas acciones acciones son comandos "selenese":
 | storeEval     | ${miGrado} + " es guay"  | comentario |
 | echo          | ${comentario}            |            |
 
+### Commands
 Hay 3 tipos:
 * **Actions**: Hacen cosas: `click`, `clickAndWait,`, `type`
 * **Accessors**: Usar variables: `storeText`, `storeEval`, `storeTitle`
@@ -77,9 +78,14 @@ Hay 3 tipos:
   * Assert: detiene la ejec. `assertTitle`
   * WaitFor: Espera antes de detener. `waitForPageToLoad`, `waitForElementPresent)` (tras `click`)
 
+### Locators (Target)
+* `id=xxx`: Atributo id
+* `name=xxx`: Atributo name
+* `/html/body/form[1]`: Ruta absoluta
+* `//form[1]`: Ruta relativa
+* `link=Continue`: Se usa en los clicks
 
 # Ejercicios
-
 
 #### a) Dados los tests implementados en prácticas con Katalon Recorder, indica con cuál de los dos métodos de diseño de casos de prueba vistos en clase hemos obtenido dichos tests. Justifica claramente tu respuesta.
 
