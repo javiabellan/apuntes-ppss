@@ -138,6 +138,12 @@ Es un elemento del **banco de trabajo** (no del plan de test) que se selecciona 
 
 Dado que JMeter "grabará" todas las acciones que realicemos en el navegador en un controlador de tipo "recording", tendremos que incluir un controlador de este tipo en nuestro plan de pruebas. Lo primero que haremos será añadir un grupo de hilos en nuestro plan. Desde el menú contextual del nodo "Plan de Pruebas", elegiremos `Añadir→Hilos→Grupo de hilos`. A continuación, desde el menú contextual del grupo de hilos que acabamos de añadir tendremos que elegir `Añadir→Controlador lógico→Controlador Grabación`.
 
+### Consejos JMeter
+
+* Coge casos de prueba del mundo real (perfil operacional).
+* Usar JMeter en una máquina distinta (o varias, para caraga extra) a la del sistema a probar. Nunca en la misma.
+* Ancho de banda suficiente, la idea es probar el rendimiento de la aplicación, no la conexión de red.
+* Recomendable dejar JMeter durante largos periodos de tiempo.
 
 # Ejercicios
 
