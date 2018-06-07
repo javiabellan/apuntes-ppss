@@ -81,16 +81,34 @@ Un **plan de pruebas** JMeter está formado por por:
   * Samplers (muestreadores) envían peticiones a un servidor. ![logo](http
     * Petición HTTP
     * Petición FTP
-  * Elementos de Configuración (Configuration Elements): Trabajan conjuntamente con un sampler.
-  * Controladores lógicos (Logic Controllers): Actúan sobre sus elementos hijo
+  * Elementos de Configuración (Configuration Elements): Trabajan conjuntamente con un sampler. También se usan para configurar cosas comunes como por ejemplo:
+    * Valores por defecto de HTTP: protocolo (HTTPS) y la url comun...
+    * Gestor de cookies: Almacena cookies y hace que esten disponibles en las siguientes llamadas.
+  * Controladores lógicos (Logic Controllers): Actúan sobre sus elementos hijo:
     * Simple controller: Simplemente agrupa.
+    * Controlador de grabación: Graba (creando así) las peticiones que hagamos en el navegador. Agrupa solo.
     * Loop controller: Itera un número de veces.
     * Only once controller: Sólo se procesa una vez en el plan de pruebas.
     * Interleave controller: Ejecuta un solo hijo en cada iteración, hasta que se ejcutan todos de forma secuencial.
   * Temporizador (Timer): Permiten introducir pausas antes de cada una de las peticiones de cada hilo.
-  * Aserciones de respuesta: Permiten hacer afirmaciones sobre las respuestas recibidas del sampler.
-  * Listeners: Almacenar en el disco los resultados de las peticiones realizadas.
+  * Aserciones de respuesta: Permiten hacer afirmaciones sobre las respuestas recibidas del sampler. Hay que meterlas dentro del sampler, e introducimos el **Patrón a probar** que es un texto que queremos que aparezca en la página.
+  * Listeners: Almacenar en el disco los resultados de las peticiones realizadas. Podemos limpiar los resultados de los listeners. Varios tipos (todos guardan lo mismo, solo que lo presentan de forma difernte).
+    * Resultados de la Aserción
+    * Árbol de resultados
+    * Informe agragado: Ver el rendimiento (num. peticiones/seg), media, mediana, error... **de cada petición**
+    * Gráfico de resultados: Gráfica temporal de lo anterior.
   * Pre-Processors y Post-Processors
+  
+> Para cada sampler, JMeter calcula:
+> * **Num muestras**: Número de muestras con la misma etiqueta
+> * **Media**: Tiempo medio de respuesta (en milisegundos)
+> * **Mediana**: The median is the time in the middle of a set of results. 50% of the samples took no more than this time; the remainder took at least as long.
+> * **Línea de 90% (percentil)**: 90% of the samples took no more than this time. The remaining samples took at least as long as this
+> * **Min**: Tiempo mínimo de respuesta para las muestras con la misma etiqueta
+> * **Max**: Tiempo máximo de respuesta para las muestras con la misma etiqueta
+> * **% Error**: Porcentaje de peticiones con errores
+> * **Rendimiento (Throughput)**: número de peticiones por segundo/minuto/hora. La unidad de tiempo se elige en función de que el valor visualizado sea como mínimo 1.
+> * **Kb/sec**: rendimiento expresado en Kilobytes por segundo
 
 > En el grupo de hilos se especifica:
 > * **Número de hilos**: Cuántos hilos (usurarios) actuarán en paralelo.
