@@ -76,6 +76,12 @@ Apache JMeter es una herramienta diseñada para medir el rendimiento **mediante 
 $ jmeter
 ```
 
+> En el grupo de hilos se especifica:
+> * **Número de hilos**: Cuántos hilos (usurarios) actuarán en paralelo.
+> * **Periodo de subida** (RAMP-UP): Tiempo que tarda en crearse los hilos (50 hilos y 100s -> un hilo cada 2s).
+> * **Contador del bucle**: Número de veces que cada hilo ejecutará la prueba (iteraciones).
+
+
 Un **plan de pruebas** JMeter está formado por por:
 * Uno o más **grupos de hilos** (Thread Groups) que a su vez tiene:
   * Samplers (muestreadores) envían peticiones a un servidor. ![logo](http
@@ -110,10 +116,6 @@ Un **plan de pruebas** JMeter está formado por por:
 > * **Rendimiento (Throughput)**: número de peticiones por segundo/minuto/hora. La unidad de tiempo se elige en función de que el valor visualizado sea como mínimo 1.
 > * **Kb/sec**: rendimiento expresado en Kilobytes por segundo
 
-> En el grupo de hilos se especifica:
-> * **Número de hilos**: Cuántos hilos (usurarios) actuarán en paralelo.
-> * **Periodo de subida** (RAMP-UP): Tiempo que tarda en crearse los hilos (50 hilos y 100s -> un hilo cada 2s).
-> * **Contador del bucle**: Número de veces que cada hilo ejecutará la prueba (iteraciones).
 
 Y Se ejecutan en este orden:
 
