@@ -72,10 +72,10 @@ Esas acciones acciones son comandos "selenese":
 ### Commands
 Hay 3 tipos:
 * **Actions**: Hacen cosas: `click`, `clickAndWait,`, `type`
-* **Accessors**: Usar variables: `storeText`, `storeEval`, `storeTitle`
+* **Accessors**: Usar variables: `storeText`, `storeTitle`, `storeEval`
 * **Assertions**: Comprueban cosas:
-  * Verify: no detiene la ejec. `verifyText`, `verifyNotText`, `verifyElementPresent`
-  * Assert: detiene la ejec. `assertTitle`
+  * Verify: no detiene la ejec. `verifyText`, `verifyNotText`, `verifyTitle`, `verifyElementPresent`
+  * Assert: detiene la ejec. `assertText`, `assertTitle`
   * WaitFor: Espera antes de detener. `waitForPageToLoad`, `waitForElementPresent)` (tras `click`)
 
 ### Locators (Target)
