@@ -65,12 +65,12 @@ Planificar un proyecto...
 > ### Niveles de las pruebas
 > 
 > 1. **Unidad**: Encontrar defectos en las unidades de forma **aislada**.
->    * Caja blanca: Camino básico
+>    * Caja blanca: Camino básico (JUnit, Maven, EasyMock).
 >    * Caja negra: Particiones equivalentes
 > 2. **Integración**: Encontrar defectos en la interacción de las unidades (debe establecerse un **orden**).
->    * Caja negra: Sugún tipo de interfaz a usar, hay consejos.
+>    * Caja negra: Sugún tipo de interfaz a usar, hay consejos. (JUnit, Maven, DbUnit).
 > 3. **Sistema**: Encontrar defectos derivados del comportamiento del sistema como un todo.
->    * Caja negra: Transición de estados.
+>    * Caja negra: Transición de estados. (JUnit, Maven).
 > 4. **Aceptación**: Valorar en qué **grado** se satisfacen las expectativas del cliente. Basadas en criterios de aceptación (prop. emergentes) cuantificables.
 >    * Caja negra:
 >      * Funcionales: Basado en requerimientos/escenarios (Katalon, Selenium WebDriver).
