@@ -126,6 +126,8 @@ En modelos iterativos, las pruebas se planifican a nivel de **iteración** y **r
 **Los modelos iterativos no es que sean más productivos que los sequenciales.
 Significan que tienen una retroalimentación más frecuente y eso hace reaccionar a exitos y fallos con mayor antelación.**
 
+Las iteraciones son **time-boxed**: Tienen un tiempo fijo (no se retrasan).
+
 ### Modelo	UP
 
 Se hacen las pruebas al final de cada iteración. En las primeras iters. las pruebas serán pequeñitas
