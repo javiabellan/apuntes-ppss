@@ -51,8 +51,8 @@ En Java:
 ### Herramienta Cobertura
 
 * Instrumenta el **bytecode** de Java.
+* Puede utilizarse desde terminal, como pluging de Maven (y con Ant).
 * Basado en JCoverage.
-* Puede utilizarse desde terminal, con Ant o con Maven
 * Cobertura genera un informe con 3 métricas concretas:
   * Cobertura de **Líneas** (Line coverage)
   * Cobertura de **Ramas** (Branch coverage)
@@ -73,7 +73,21 @@ En Java:
 
 ### Plugin de Covertura para Maven
 
-Falta...
+| Goal                     | Descripción                                                                             |
+|--------------------------|-----------------------------------------------------------------------------------------|
+| cobertura:**instrument** | Instrumenta las clases compiladas (modifica el bytecode para añadir un contador). Por defecto no instrumenta test.|
+| cobertura:**clean**      | Pone los contadores a cero de las ejecuciones previas.                                  |
+| cobertura:**cobertura**  | Instrumenta las clases compiladadas. Ejecuta los tests unitarios, y **genera informe**. |
+| cobertura:**cobertura-integration-test**  | Instrumenta las clases compiladadas. Ejecuta los tests unitarios y de integración, y **genera informe**. |
+| cobertura:**check**      | Se utiliza para forzar un mínimo de cobertura. Checkea la última instrumentación realizada. Y si no llega -> build failure aposta. |
+
+
+> Una altertiva a la goal `cobertura:cobertura` para generar el informe de cobertura es:
+> * Incluir el plugin de cobertura dentro de la sección `<reporting>` del pom.
+> * Y después ejecutar `mvn site`. Si lo hacemos de nuevo, escribiremos `mvn cobertura:clean site`.
+
+Independientemente de si hemos generado el informe con cualquiera de las dos formas anteriores,
+si abrimos el fichero `target/site/cobertura/index.html` veremos el informe.
 
 # Ejercicios
 
